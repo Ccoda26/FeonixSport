@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+    <h1>
+{#        <a href="{{ path('Exercice_Show'), ('id': exercice.id) }}">#}
+            Ma liste d'article
+{#        </a>#}
+    </h1>
+
+    {% for articles in articleslist %}
+        <h2><a href="{{ path('Article_Show', {'id': articles.id}) }}">{{ articles.title }}</a></h2>
+        <p>{{ articles.description }}</p>
+    {% endfor %}
+
+{% endblock %}

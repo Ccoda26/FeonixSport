@@ -1,0 +1,43 @@
+/* Classe générale a tous mes fichiers */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.resp{
+    width: 100%;
+    height: auto;
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color: red;
+}
+
+/* Header de ma base */
+.navigation{
+    width: 100%;
+    background-color: #000033 ;
+    display: flex;
+
+}
+.listenavigation{
+    color: white;
+    display: flex;
+
+}
+
+.listenavigation li{
+    margin: 0 5px;
+}
+
+.logoheader{
+    width: 15%;
+}
+
+
