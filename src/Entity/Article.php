@@ -45,15 +45,13 @@ class Article
     private $published;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Media::class, inversedBy="articles")
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="article")
      */
-    private $media;
-
-
+    private $picture;
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
+        $this->picture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,12 +95,12 @@ class Article
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate()
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): self
+    public function setCreationDate( $creationDate): self
     {
         $this->creationDate = $creationDate;
 
@@ -122,28 +120,33 @@ class Article
     }
 
     /**
-     * @return Collection|media[]
+     * @return Collection|Picture[]
      */
-    public function getMedia(): Collection
+    public function getPicture(): Collection
     {
-        return $this->media;
+        return $this->picture;
     }
 
-    public function addMedium(media $medium): self
+    public function addPicture(Picture $picture): self
     {
-        if (!$this->media->contains($medium)) {
-            $this->media[] = $medium;
+        if (!$this->picture->contains($picture)) {
+            $this->picture[] = $picture;
+            $picture->setArticle($this);
         }
 
         return $this;
     }
 
-    public function removeMedium(media $medium): self
+    public function removePicture(Picture $picture): self
     {
-        $this->media->removeElement($medium);
+        if ($this->picture->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getArticle() === $this) {
+                $picture->setArticle(null);
+            }
+        }
 
         return $this;
     }
-
-
+    
 }

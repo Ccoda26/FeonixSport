@@ -22,12 +22,12 @@ class Exercise
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nameExercise;
+    private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $exerciseDescritpion;
+    private $Descritpion;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -35,15 +35,13 @@ class Exercise
     private $level;
 
     /**
-     * @ORM\ManyToMany(targetEntity=media::class, inversedBy="exercises")
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="exercise")
      */
-    private $media;
-
-
+    private $Picture;
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
+        $this->Picture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,26 +49,26 @@ class Exercise
         return $this->id;
     }
 
-    public function getNameExercise(): ?string
+    public function getName(): ?string
     {
-        return $this->nameExercise;
+        return $this->name;
     }
 
-    public function setNameExercise(string $nameExercise): self
+    public function setName(string $name): self
     {
-        $this->nameExercise = $nameExercise;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getExerciseDescritpion(): ?string
+    public function getDescritpion(): ?string
     {
-        return $this->exerciseDescritpion;
+        return $this->Descritpion;
     }
 
-    public function setExerciseDescritpion(?string $exerciseDescritpion): self
+    public function setDescritpion(?string $Descritpion): self
     {
-        $this->exerciseDescritpion = $exerciseDescritpion;
+        $this->Descritpion = $Descritpion;
 
         return $this;
     }
@@ -88,25 +86,31 @@ class Exercise
     }
 
     /**
-     * @return Collection|media[]
+     * @return Collection|Picture[]
      */
-    public function getMedia(): Collection
+    public function getPicture(): Collection
     {
-        return $this->media;
+        return $this->Picture;
     }
 
-    public function addMedium(media $medium): self
+    public function addPicture(Picture $picture): self
     {
-        if (!$this->media->contains($medium)) {
-            $this->media[] = $medium;
+        if (!$this->Picture->contains($picture)) {
+            $this->Picture[] = $picture;
+            $picture->setExercise($this);
         }
 
         return $this;
     }
 
-    public function removeMedium(media $medium): self
+    public function removePicture(Picture $picture): self
     {
-        $this->media->removeElement($medium);
+        if ($this->Picture->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getExercise() === $this) {
+                $picture->setExercise(null);
+            }
+        }
 
         return $this;
     }

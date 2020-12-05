@@ -19,11 +19,13 @@
 
             <nav>
                 <ul class="listenavigation" >
-                    <li><a href="{{ path('All_Articles') }}">Articles</a></li>
-                    <li><a href="{{ path('All_Exercices')}}">Exercices</a></li>
-                    <li><a href="{{ path('All_Programs') }}">Programmes</a></li>
-                    <li><a href="{{ path('Identity_Page') }}">Qui sommes nous ?</a></li>
-                    <li><a href="{{ path('Take_rdv') }}">Prise de Rendez-Vous</a></li>
+                    {% block navigation %}
+                        <li><a href="{{ path('All_Articles') }}">Articles</a></li>
+                        <li><a href="{{ path('All_Exercices')}}">Exercices</a></li>
+                        <li><a href="{{ path('All_Programs') }}">Programmes</a></li>
+                        <li><a href="{{ path('Identity_Page') }}">Qui sommes nous ?</a></li>
+                        <li><a href="{{ path('Take_rdv') }}">Prise de Rendez-Vous</a></li>
+                    {% endblock %}
                 </ul>
             </nav>
 

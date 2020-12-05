@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ProgramRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,22 +52,13 @@ class Program
      */
     private $published;
 
-
-
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="programs")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Program")
      */
     private $user;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Media::class, inversedBy="programs")
-     */
-    private $media;
 
-    public function __construct()
-    {
-        $this->media = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -160,8 +149,6 @@ class Program
         return $this;
     }
 
-
-
     public function getUser(): ?user
     {
         return $this->user;
@@ -174,27 +161,6 @@ class Program
         return $this;
     }
 
-    /**
-     * @return Collection|media[]
-     */
-    public function getMedia(): Collection
-    {
-        return $this->media;
-    }
 
-    public function addMedium(media $medium): self
-    {
-        if (!$this->media->contains($medium)) {
-            $this->media[] = $medium;
-        }
 
-        return $this;
-    }
-
-    public function removeMedium(media $medium): self
-    {
-        $this->media->removeElement($medium);
-
-        return $this;
-    }
 }

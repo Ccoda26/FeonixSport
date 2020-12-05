@@ -10,9 +10,17 @@
 
 {% block main %}
     <h1>
-
-       C'est l'admin
-
+        {#        <a href="{{ path('Exercice_Show'), ('id': exercice.id) }}">#}
+        Ma liste d'article
+        {#        </a>#}
     </h1>
+    <a href="{{ path('Article_Insert') }}">Création d'article</a>
+    {% for articles in articleslist %}
+        <h2><a href="{{ path('Article_Show', {'id': articles.id}) }}">{{ articles.title }}</a></h2>
+        <p>{{ articles.description }}</p>
+    {% endfor %}
+
+
+
 
 {% endblock %}
