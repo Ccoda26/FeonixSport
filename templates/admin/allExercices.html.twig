@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+    <h1>
+            Ma liste d'exercice
+    </h1>
+
+    <a href="{{ path('Exercice_Insert') }}">Ajout d'exercice</a>
+    {% for exercice in erxerciselist %}
+        <h2><a href="{{ path('Admin_Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name }}</a></h2>
+
+    {% endfor %}
+{% endblock %}

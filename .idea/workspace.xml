@@ -20,27 +20,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3833b8a6-6895-4d0b-b162-aa793e71caea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201203140438.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201205160456.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201205160933.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Picture.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/PictureRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/allArticles.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201208083609.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201208083912.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201209094433.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/UploadsPictures.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminExerciceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminProgramController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/allExercices.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/allPrograms.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/insertExercice.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/insertProgram.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminHomepageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminHomepageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Users/ProgramController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Users/ProgramController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Article.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Exercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Media.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Picture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Picture.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Program.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Program.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MediaRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/Homepage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/Homepage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ExerciceType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ProgramType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Front/allArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/allArticles.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Front/allExercices.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/allExercices.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Front/exercicesShow.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/exercicesShow.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/allArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/allArticles.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/insertArticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/insertArticle.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,12 +62,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
@@ -176,22 +185,23 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\projet\FeonixSport\templates\admin" />
+      <recent name="C:\wamp64\www\projet\FeonixSport\src\Controller\Admin" />
+      <recent name="C:\wamp64\www\projet\FeonixSport\src\Controller\admin" />
+      <recent name="C:\wamp64\www\projet\FeonixSport" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\projet\FeonixSport\templates\Front" />
       <recent name="C:\wamp64\www\projet\FeonixSport\templates\Front\Front" />
       <recent name="C:\wamp64\www\projet\FeonixSport\templates" />
       <recent name="C:\wamp64\www\projet\FeonixSport\src\Controller\Users" />
       <recent name="C:\wamp64\www\projet\FeonixSport\src\Controller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\projet\FeonixSport\src\Controller\Admin" />
-      <recent name="C:\wamp64\www\projet\FeonixSport\src\Controller\admin" />
-      <recent name="C:\wamp64\www\projet\FeonixSport" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -207,7 +217,14 @@
       <workItem from="1607011548359" duration="312000" />
       <workItem from="1607020661837" duration="8251000" />
       <workItem from="1607072166143" duration="36000" />
-      <workItem from="1607182431330" duration="1646000" />
+      <workItem from="1607182431330" duration="12523000" />
+      <workItem from="1607415635632" duration="1254000" />
+      <workItem from="1607503458634" duration="9836000" />
+      <workItem from="1607517292412" duration="14971000" />
+      <workItem from="1607543083289" duration="1544000" />
+      <workItem from="1607589413068" duration="19668000" />
+      <workItem from="1607676141197" duration="506000" />
+      <workItem from="1607796477419" duration="12132000" />
     </task>
     <servers />
   </component>
@@ -224,35 +241,44 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="506" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606917030540">
+    <state x="506" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607599622664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="506" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1606917030540" />
+    <state x="506" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1607599622664" />
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606924321542">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1606924321542" />
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607807859107">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607807859107" />
     <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1607072200514">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607072200514" />
-    <state x="522" y="135" key="NewPhpClassDialog" timestamp="1606917209739">
+    <state x="522" y="135" key="NewPhpClassDialog" timestamp="1607807352229">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="522" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1606917209739" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1607020686554">
+    <state x="522" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1607807352229" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1607524772827">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607020686554" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1606916145568">
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607524772827" />
+    <state x="478" y="116" width="579" height="592" key="find.popup" timestamp="1607594965827">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1606916145568" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606921066374">
+    <state x="478" y="116" width="579" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607594965827" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1607519018500">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606921066374" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1607519018500" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607807470429">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607807470429" />
   </component>
 </project>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PictureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,56 +22,99 @@ class Picture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $FileName;
+    private $Filename;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="picture")
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="Filename")
      */
-    private $article;
+    private $Articles;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Exercise::class, inversedBy="Picture")
+     * @ORM\ManyToMany(targetEntity=Exercise::class, mappedBy="Filename")
      */
-    private $exercise;
+    private $exercises;
+
+
+    public function __construct()
+    {
+        $this->ExerciceFiles = new ArrayCollection();
+        $this->Articles = new ArrayCollection();
+        $this->exercises = new ArrayCollection();
+
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFileName(): ?string
+
+
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
     {
-        return $this->FileName;
+        return $this->Articles;
     }
 
-    public function setFileName(?string $FileName): self
+    public function addArticle(Article $article): self
     {
-        $this->FileName = $FileName;
+        if (!$this->Articles->contains($article)) {
+            $this->Articles[] = $article;
+            $article->addFilename($this);
+        }
 
         return $this;
     }
 
-    public function getArticle(): ?Article
+    public function removeArticle(Article $article): self
     {
-        return $this->article;
-    }
-
-    public function setArticle(?Article $article): self
-    {
-        $this->article = $article;
+        if ($this->Articles->removeElement($article)) {
+            $article->removeFilename($this);
+        }
 
         return $this;
     }
 
-    public function getExercise(): ?Exercise
+    public function getFilename(): ?string
     {
-        return $this->exercise;
+        return $this->Filename;
     }
 
-    public function setExercise(?Exercise $exercise): self
+    public function setFilename(?string $Filename): self
     {
-        $this->exercise = $exercise;
+        $this->Filename = $Filename;
 
         return $this;
     }
+
+    /**
+     * @return Collection|Exercise[]
+     */
+    public function getExercises(): Collection
+    {
+        return $this->exercises;
+    }
+
+    public function addExercise(Exercise $exercise): self
+    {
+        if (!$this->exercises->contains($exercise)) {
+            $this->exercises[] = $exercise;
+            $exercise->addFilename($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExercise(Exercise $exercise): self
+    {
+        if ($this->exercises->removeElement($exercise)) {
+            $exercise->removeFilename($this);
+        }
+
+        return $this;
+    }
+
 }

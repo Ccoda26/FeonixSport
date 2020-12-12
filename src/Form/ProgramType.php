@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Program;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,13 +16,19 @@ class ProgramType extends AbstractType
         $builder
             ->add('Title')
             ->add('Description')
-            ->add('content')
             ->add('Price')
             ->add('level')
             ->add('theme')
             ->add('published')
-            ->add('user')
-            ->add('media')
+
+            ->add('Filename', FileType::class,[
+                'label' => 'Uploadez votre image',
+//                'label' => false,
+                'multiple' => false,
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('valider', SubmitType::class)
         ;
     }
 

@@ -7,7 +7,7 @@
     </h1>
 
     {% for exercice in exerciceList %}
-        <h2><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.nameExercise }}</a></h2>
+        <h2><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name }}</a></h2>
 
     {% endfor %}
 {% endblock %}

@@ -27,21 +27,23 @@ class Exercise
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $Descritpion;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $level;
 
+
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="exercise")
+     * @ORM\ManyToMany(targetEntity=Picture::class, inversedBy="exercises", cascade={"persist"}))
      */
-    private $Picture;
+    private $Filename;
 
     public function __construct()
     {
-        $this->Picture = new ArrayCollection();
+
+        $this->Filename = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,14 +63,14 @@ class Exercise
         return $this;
     }
 
-    public function getDescritpion(): ?string
+    public function getDescription(): ?string
     {
-        return $this->Descritpion;
+        return $this->description;
     }
 
-    public function setDescritpion(?string $Descritpion): self
+    public function setDescription(?string $Description): self
     {
-        $this->Descritpion = $Descritpion;
+        $this->description = $Description;
 
         return $this;
     }
@@ -88,32 +90,26 @@ class Exercise
     /**
      * @return Collection|Picture[]
      */
-    public function getPicture(): Collection
+    public function getFilename(): Collection
     {
-        return $this->Picture;
+        return $this->Filename;
     }
 
-    public function addPicture(Picture $picture): self
+    public function addFilename(Picture $filename): self
     {
-        if (!$this->Picture->contains($picture)) {
-            $this->Picture[] = $picture;
-            $picture->setExercise($this);
+        if (!$this->Filename->contains($filename)) {
+            $this->Filename[] = $filename;
         }
 
         return $this;
     }
 
-    public function removePicture(Picture $picture): self
+    public function removeFilename(Picture $filename): self
     {
-        if ($this->Picture->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getExercise() === $this) {
-                $picture->setExercise(null);
-            }
-        }
+        $this->Filename->removeElement($filename);
 
         return $this;
     }
-
+    
 
 }

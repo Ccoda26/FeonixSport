@@ -44,15 +44,17 @@ class Article
      */
     private $published;
 
+
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="article")
+     * @ORM\ManyToMany(targetEntity=Picture::class, inversedBy="Articles", cascade="persist")
      */
-    private $picture;
+    private $Filename;
 
     public function __construct()
     {
-        $this->picture = new ArrayCollection();
+        $this->Filename = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -119,34 +121,30 @@ class Article
         return $this;
     }
 
+
     /**
      * @return Collection|Picture[]
      */
-    public function getPicture(): Collection
+    public function getFilename(): Collection
     {
-        return $this->picture;
+        return $this->Filename;
     }
 
-    public function addPicture(Picture $picture): self
+    public function addFilename(Picture $filename): self
     {
-        if (!$this->picture->contains($picture)) {
-            $this->picture[] = $picture;
-            $picture->setArticle($this);
+        if (!$this->Filename->contains($filename)) {
+            $this->Filename[] = $filename;
         }
 
         return $this;
     }
 
-    public function removePicture(Picture $picture): self
+    public function removeFilename(Picture $filename): self
     {
-        if ($this->picture->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getArticle() === $this) {
-                $picture->setArticle(null);
-            }
-        }
+        $this->Filename->removeElement($filename);
 
         return $this;
     }
+
     
 }

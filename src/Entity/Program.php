@@ -28,11 +28,6 @@ class Program
     private $Description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $content;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $Price;
@@ -52,12 +47,13 @@ class Program
      */
     private $published;
 
+
+
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Program")
+     *
+     * @ORM\OneToOne(targetEntity=Picture::class, cascade={"persist", "remove"})
      */
-    private $user;
-
-
+    private $Filename;
 
 
     public function getId(): ?int
@@ -85,18 +81,6 @@ class Program
     public function setDescription(?string $Description): self
     {
         $this->Description = $Description;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): self
-    {
-        $this->content = $content;
 
         return $this;
     }
@@ -149,14 +133,15 @@ class Program
         return $this;
     }
 
-    public function getUser(): ?user
+
+    public function getFilename(): ?Picture
     {
-        return $this->user;
+        return $this->Filename;
     }
 
-    public function setUser(?user $user): self
+    public function setFilename(?Picture $Filename): self
     {
-        $this->user = $user;
+        $this->Filename = $Filename;
 
         return $this;
     }

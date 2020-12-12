@@ -83,7 +83,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->programs = new ArrayCollection();
         $this->appointments = new ArrayCollection();
     }
 
@@ -237,35 +236,6 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Program[]
-     */
-    public function getPrograms(): Collection
-    {
-        return $this->programs;
-    }
-
-    public function addProgram(Program $program): self
-    {
-        if (!$this->programs->contains($program)) {
-            $this->programs[] = $program;
-            $program->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProgram(Program $program): self
-    {
-        if ($this->programs->removeElement($program)) {
-            // set the owning side to null (unless already changed)
-            if ($program->getUser() === $this) {
-                $program->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Appointment[]

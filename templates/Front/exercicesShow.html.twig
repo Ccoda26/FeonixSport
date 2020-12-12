@@ -4,7 +4,14 @@
 {% block main %}
     <h1>L'exercice n° {{ exercice.id }}</h1>
 
-    <h2> {{  exercice.nameExercise}}</h2>
-    <p>{{ exercice.exerciseDescritpion }}</p>
+    <h2> {{  exercice.name}}</h2>
+    <p>{{ exercice.description }}</p>
+
+    {% for image in exercice.Filename %}
+    <div>
+        <img src="{{ asset('/assets/uploads/ ~ image.Filename') }}">
+    </div>
+
+    {% endfor %}
 
 {% endblock %}
