@@ -21,26 +21,17 @@ class AdminProgramController extends AbstractController
 {
     /**
      * @Route("admin/programs", name="Admin_All_Program")
-     * @param ProgramRepository $programRepository
      */
-    public function ProgrammList(ProgramRepository $programRepository){
-        return $this->render('Admin/allPrograms.html.twig');
+    public function ProgramList(){
+        return $this->redirectToRoute('All_Programs');
     }
 
     /**
      * @Route("/admin/program/show/{id}", name="Admin_Program_Show")
-     * @param ProgramRepository $programRepository
-     * @param $id
-     * @return Response
      */
-    public function ExerciceShow(ProgramRepository $programRepository, $id)
+    public function ProgramShow()
     {
-
-        $program = $programRepository->find($id);
-
-        return $this->render('admin/programsShow.html.twig', [
-            "program" => $program
-        ]);
+        return $this->redirectToRoute('Program_Show');
     }
 
     /**
@@ -50,7 +41,7 @@ class AdminProgramController extends AbstractController
      * @param SluggerInterface $slugger
      * @return RedirectResponse|Response
      */
-    public function InsertArticle(Request $request,
+    public function InsertProgram(Request $request,
                                   EntityManagerInterface $entityManager,
                                   SluggerInterface $slugger
     )
@@ -95,7 +86,7 @@ class AdminProgramController extends AbstractController
                 $entityManager->flush();
 
 //         si formulaire valid et envoyer
-//                return $this->redirectToRoute('Admin_All_Articles');
+                return $this->redirectToRoute('All_Programs');
             }
 
 
@@ -107,5 +98,86 @@ class AdminProgramController extends AbstractController
 
     }
 
+    /**
+     * @Route("/admin/program/update/{id}", name="Program_Update")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param SluggerInterface $slugger
+     * @return RedirectResponse|Response
+     */
+    public function UpdateProgram(Request $request,
+                                  EntityManagerInterface $entityManager,
+                                  SluggerInterface $slugger,
+                                  $id
+    )
+    {
+
+        $programs = $entityManager->getRepository(Program::class)->find($id);
+
+        $form = $this->createForm(ProgramType::class, $programs);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images transmises
+            $picture = $form->get('Filename')->getData();
+
+
+            if ($picture) {
+                $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$picture->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $picture->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $picture= new Picture();
+                $picture->setFilename($newFilename);
+                $programs->setFilename($picture);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($programs);
+            $entityManager->flush();
+
+//         si formulaire valid et envoyer
+                return $this->redirectToRoute('Program_Show',[
+                'id' => $programs->getId()
+                ]);
+        }
+
+
+        return $this->render('admin/updateProgram.html.twig', [
+
+            'form' => $form->createView(),
+
+        ]);
+
+    }
+
+    /**
+     * @Route ("/admin/program/delete/{id}", name="Program_Delete")
+     * @param EntityManagerInterface $entityManager
+     * @param $id
+     */
+    Public Function DeleteProgram(EntityManagerInterface $entityManager,$id){
+
+        $program = $entityManager->getRepository(Program::class)->find($id);
+
+        $entityManager->remove($program);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('All_Programs');
+    }
 
 }

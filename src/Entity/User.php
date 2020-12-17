@@ -81,6 +81,11 @@ class User implements UserInterface
      */
     private $phoneNumber;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activtion_token;
+
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
@@ -275,6 +280,18 @@ class User implements UserInterface
     public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getActivtionToken(): ?string
+    {
+        return $this->activtion_token;
+    }
+
+    public function setActivtionToken(?string $activtion_token): self
+    {
+        $this->activtion_token = $activtion_token;
 
         return $this;
     }

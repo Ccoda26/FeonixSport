@@ -12,9 +12,9 @@ class AdminHomepageController extends AbstractController
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/admin/accueil", name="Homepage_admin")
+     * @Route("/admin", name="Homepage_admin")
      */
     public function AdminHomepage(){
-        return $this->render('admin/Homepage.html.twig');
+        return $this->redirectToRoute('Homepage');
     }
 }

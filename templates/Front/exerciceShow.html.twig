@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('Exercice_Update',{'id': exercice.id }) }}"> Modifier cet exercice </a>
+        <br>
+        <a href="{{ path('Exercice_Delete',{'id': exercice.id})}}"> Supprimer cet exercice </a>
+    {% endif %}
+
+    <h1>L'exercice n° {{ exercice.id }}</h1>
+
+    <h2> {{  exercice.name}}</h2>
+    <p>{{ exercice.description }}</p>
+
+{% for exercice in exercice.filename %}
+
+    {% if exercice.filename %}
+    <div>
+        <img src="{{ asset("assets/uploads/" ~ exercice.Filename) }}" alt="" >
+    </div>
+        <a href="{{ path('delete_exercice_image',{'id': exercice.id})}}" data-delete data-token="{{ csrf_token('delete' ~ exercice.id )}}"> Supprimer cette image </a>
+
+    {% endif %}
+{% endfor %}
+
+    <script src="{{ asset('assets/js/Picture.js') }}"></script>
+{% endblock %}

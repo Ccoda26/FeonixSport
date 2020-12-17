@@ -1,4 +1,6 @@
 
+{% extends "base.html.twig" %}
+  {% block main %}
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -36,3 +38,8 @@
     </button>
 </form>
 
+<div>
+    <h2>Je suis pas encore inscris</h2>
+    <a href="{{ path('sign_page') }}">Je m'inscris</a>
+</div>
+{% endblock %}

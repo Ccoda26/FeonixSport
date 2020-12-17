@@ -37,7 +37,7 @@ class Picture
 
     public function __construct()
     {
-        $this->ExerciceFiles = new ArrayCollection();
+
         $this->Articles = new ArrayCollection();
         $this->exercises = new ArrayCollection();
 
@@ -47,8 +47,6 @@ class Picture
     {
         return $this->id;
     }
-
-
 
 
     /**

@@ -3,11 +3,15 @@
 
 {% block main %}
     <h1>
-            Ma liste d'exercice
+        Ma liste d'exercice
     </h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('Exercice_Insert') }}">Ajout d'exercice</a>
 
+    {% endif %}
     {% for exercice in exerciceList %}
         <h2><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name }}</a></h2>
 
     {% endfor %}
+
 {% endblock %}

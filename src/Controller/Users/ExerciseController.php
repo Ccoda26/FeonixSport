@@ -31,7 +31,7 @@ class ExerciseController extends AbstractController
 
         $exercice = $exerciseRepository->find($id);
 
-        return $this->render('Front/exercicesShow.html.twig',[
+        return $this->render('Front/exerciceShow.html.twig',[
             'exercice' => $exercice
         ]);
     }

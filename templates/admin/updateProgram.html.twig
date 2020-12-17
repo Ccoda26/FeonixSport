@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+{{  form_start(form, {'attr': {'class': 'container'}}) }}
+<section>
+
+
+    {{ form(form) }}
+
+
+</section>
+{{  form_end(form) }}
+
+{% endblock %}

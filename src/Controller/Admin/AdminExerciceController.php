@@ -25,28 +25,16 @@ class AdminExerciceController extends AbstractController
      */
     public function AllExercices(ExerciseRepository $exerciseRepository)
     {
-        $exerciselist = $exerciseRepository->findAll();
-
-        return $this->render('admin/allExercices.html.twig', [
-            "erxerciselist" => $exerciselist
-        ]);
+        return $this->redirectToRoute('All_Exercices');
     }
 
 
     /**
      * @Route("/admin/exercice/show/{id}", name="Admin_Exercice_Show")
-     * @param ExerciseRepository $exerciseRepository
-     * @param $id
-     * @return Response
      */
-    public function ExerciceShow(ExerciseRepository $exerciseRepository, $id)
+    public function ExerciceShow()
     {
-
-        $exercice = $exerciseRepository->find($id);
-
-        return $this->render('admin/exercicesShow.html.twig', [
-            "exercice" => $exercice
-        ]);
+        return $this->redirectToRoute('Exercice_Show');
     }
 
     /**
@@ -56,7 +44,7 @@ class AdminExerciceController extends AbstractController
      * @param SluggerInterface $slugger
      * @return RedirectResponse|Response
      */
-    public function InsertArticle(Request $request,
+    public function InsertExercice(Request $request,
                                   EntityManagerInterface $entityManager,
                                   SluggerInterface $slugger
     )
@@ -98,7 +86,7 @@ class AdminExerciceController extends AbstractController
                 $entityManager->flush();
 
 //         si formulaire valid et envoyer
-//                return $this->redirectToRoute('Admin_All_Articles');
+             return $this->redirectToRoute('Admin_All_Exercices');
             }
         }
             return $this->render('admin/insertExercice.html.twig', [
@@ -107,7 +95,111 @@ class AdminExerciceController extends AbstractController
 
             ]);
 
+    }
 
+    /**
+     * @Route("/admin/exercice/update/{id}", name="Exercice_Update")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param SluggerInterface $slugger
+     * @return RedirectResponse|Response
+     */
+    public function UpdateExercice(Request $request,
+                                   EntityManagerInterface $entityManager,
+                                   SluggerInterface $slugger,
+                                   $id
+    )
+    {
+
+        $exercices = $entityManager->getRepository(Exercise::class)->find($id);
+
+        $form = $this->createForm(ExerciceType::class, $exercices);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images transmises
+            $pictures = $form->get('Filename')->getData();
+
+            // On boucle sur les images
+            foreach ($pictures as $image) {
+                if ($image) {
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
+                    // On génère un nouveau nom de fichier
+                    $newfilename = md5(uniqid()) . '.' . $image->guessExtension();
+
+                    // On copie le fichier dans le dossier uploads
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $newfilename
+                    );
+
+                    // On crée l'image dans la base de données
+                    $picture = new Picture();
+                    $picture->setFilename($newfilename);
+                    $exercices->addFilename($picture);
+                }
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($exercices);
+                $entityManager->flush();
+
+//         si formulaire valid et envoyer
+                return $this->redirectToRoute('Exercice_Show', [
+                    'id' => $exercices->getId(),
+                ]);
+            }
+
+        }
+        return $this->render('admin/updateExercice.html.twig', [
+            'form' => $form->createView(),
+
+        ]);
+
+    }
+
+    /**
+     * @Route ("/admin/exercice/delete/{id}", name="Exercice_Delete")
+     * @param EntityManagerInterface $entityManager
+     * @param $id
+     */
+    Public Function DeleteExercice(EntityManagerInterface $entityManager,$id){
+
+        $exercice = $entityManager->getRepository(Exercise::class)->find($id);
+
+        $entityManager->remove($exercice);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('All_Exercices');
+    }
+
+    /**
+     * @Route("/admin/exercice/delete/picture/{id}", name="delete_exercice_image", methods={"DELETE"})
+     */
+    public function deleteImage(Picture $picture, Request $request){
+        $data = json_decode($request->getContent(), true);
+
+//        dump($data);die();
+
+        // On vérifie si le token est valide
+        if($this->isCsrfTokenValid('delete'.$picture->getId(), $data['_token'])){
+            // On récupère le nom de l'image
+            $nom = $picture->getFilename();
+            // On supprime le fichier
+            unlink($this->getParameter('images_directory').'/'.$nom);
+
+            // On supprime l'entrée de la base
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($picture);
+            $em->flush();
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        }else{
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
     }
 
 }

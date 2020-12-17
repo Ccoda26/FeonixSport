@@ -6,16 +6,31 @@
         Insertion d'article
     </h1>
 
-    {{  form_start(form, {'attr': {'class': 'container'}}) }}
+    {{  form_start(form, {'attr': {'class': 'container myimage'}}) }}
     <section>
+        {{ form_row(form.title) }}
 
+        {{ form_row(form.description) }}
 
-        {{ form(form) }}
+        {{ form_row(form.content) }}
+
+        {{ form_row(form.creationDate) }}
+<div class="newimage">
+    {{ form_row(form.Filename, {'class' : 'newimage'}) }}
+</div>
+{#        <button onclick="ajouterunnewfichier()">Ajouter une autre photo</button>#}
+
+        {{ form_row(form.published) }}
+
+        {{ form_row(form.valider) }}
+
 
 
     </section>
     {{  form_end(form) }}
 
+
+    <script src="{{ asset('assets/js/AddForm.js') }}" > </script>
 
 {% endblock %}
 

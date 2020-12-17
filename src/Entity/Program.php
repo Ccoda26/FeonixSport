@@ -47,8 +47,6 @@ class Program
      */
     private $published;
 
-
-
     /**
      *
      * @ORM\OneToOne(targetEntity=Picture::class, cascade={"persist", "remove"})

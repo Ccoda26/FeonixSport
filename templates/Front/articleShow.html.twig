@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('Article_Update',{'id': article.id }) }}"> Modifier cet article </a>
+    <br>
+    <a href="{{ path('Article_Delete',{'id': article.id})}}"> Supprimer cet article </a>
+{% endif %}
+
+    <h1>Article n° {{ article.id }}</h1>
+    <p>{{ article.description }}</p>
+
+    <p>{{ article.content }}</p>
+    {% if article.filename %}
+        {% for article in article.filename %}
+
+            <div>
+                <img src="{{ asset("assets/uploads/" ~ article.Filename) }}" alt="" >
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('delete_article_image',{'id': article.id})}}" data-delete data-token="{{ csrf_token('delete' ~ article.id )}}"> Supprimer cette image </a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+
+    <script src="{{ asset('assets/js/Picture.js') }}"></script>
+
+{% endblock %}

@@ -29,7 +29,7 @@ class ArticleController extends AbstractController
 
         $article = $articleRepository->find($id);
 
-        return $this->render('Front/articlesShow.html.twig',[
+        return $this->render('Front/articleShow.html.twig',[
             "article" => $article
         ]);
     }

@@ -5,8 +5,8 @@ namespace App\Controller\Admin;
 
 
 
+use App\Controller\Service\DeleteImage;
 use App\Entity\Article;
-
 use App\Entity\Picture;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
@@ -29,32 +29,18 @@ class AdminArticleController extends AbstractController
 
     /**
      * @Route("/admin/article", name="Admin_All_Articles")
-     * @param ArticleRepository $articleRepository
-     * @return Response
      */
-    public function AllArticles(ArticleRepository $articleRepository)
+    public function AllArticles()
     {
-        $articleslist = $articleRepository->findAll();
-
-        return $this->render('Admin/allArticles.html.twig', [
-            "articleslist" => $articleslist
-        ]);
+        return $this->redirectToRoute('All_Articles');
     }
 
     /**
      * @Route("/admin/article/show/{id}", name="Admin_Article_Show")
-     * @param ArticleRepository $articleRepository
-     * @param $id
-     * @return Response
      */
-    public function ArticlesShow(ArticleRepository $articleRepository, $id)
+    public function ArticlesShow()
     {
-
-        $article = $articleRepository->find($id);
-
-        return $this->render('admin/articlesShow.html.twig', [
-            "article" => $article
-        ]);
+        return $this->redirectToRoute('Article_Show');
     }
 
 
@@ -103,7 +89,7 @@ class AdminArticleController extends AbstractController
             $entityManager->flush();
 
 //         si formulaire valid et envoyer
-//                return $this->redirectToRoute('Admin_All_Articles');
+                return $this->redirectToRoute('Admin_All_Articles');
             }
 
 
@@ -113,6 +99,111 @@ class AdminArticleController extends AbstractController
 
         ]);
 
+    }
+
+
+    /**
+     * @Route("/admin/article/update/{id}", name="Article_Update")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param SluggerInterface $slugger
+     * @return RedirectResponse|Response
+     */
+    public function UpdateArticle(Request $request,
+                                  EntityManagerInterface $entityManager,
+                                  SluggerInterface $slugger,
+                                  $id
+    )
+    {
+
+        $articles = $entityManager->getRepository(Article::class)->find($id);
+
+        $form = $this->createForm(ArticleType::class, $articles);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images transmises
+            $pictures = $form->get('Filename')->getData();
+
+            // On boucle sur les images
+            foreach($pictures as $image){
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+
+                // On crée l'image dans la base de données
+                $picture = new Picture();
+                $picture->setFilename($fichier);
+                $articles->addFilename($picture);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($articles);
+            $entityManager->flush();
+
+//         si formulaire valid et envoyer
+            return $this->redirectToRoute('Article_Show', [
+                'id' => $articles->getId(),
+            ]);        }
+
+
+        return $this->render('admin/updateArticle.html.twig', [
+
+            'form' => $form->createView(),
+
+        ]);
+
+    }
+
+    /**
+     * @Route ("/admin/article/delete/{id}", name="Article_Delete")
+     * @param EntityManagerInterface $entityManager
+     * @param $id
+     */
+    Public Function DeleteArticle(EntityManagerInterface $entityManager,$id, DeleteImage $deleteImage){
+
+
+
+
+        $article = $entityManager->getRepository(Article::class)->find($id);
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('All_Articles');
+    }
+
+    /**
+     * @Route("/admin/article/delete/picture/{id}", name="delete_article_image", methods={"DELETE"})
+     */
+    public function deleteImage(Picture $picture,Request $request){
+
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if($this->isCsrfTokenValid('delete'.$picture->getId(), $data['_token'])){
+            // On récupère le nom de l'image
+            $nom = $picture->getFilename();
+            // On supprime le fichier
+            unlink($this->getParameter('images_directory').'/'.$nom);
+
+            // On supprime l'entrée de la base
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($picture);
+            $em->flush();
+
+            // On répond en json
+            $message =  new JsonResponse(['success' => 1]);
+        }else{
+            $message=  new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+        return $message;
     }
 
 }

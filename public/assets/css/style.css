@@ -16,29 +16,58 @@ li{
 
 a{
     text-decoration: none;
-    color: red;
+    color: #e63a2b;
 }
 
-/* Header de ma base */
-.navigation{
+
+/* Header */
+header{
     width: 100%;
+
     background-color: #000033 ;
-    display: flex;
 
 }
-.listenavigation{
-    color: white;
-    display: flex;
 
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.listenavigation {
+    display: flex;
+    justify-content: center;
 }
 
 .listenavigation li{
-    margin: 0 5px;
+    margin: 10px 30px;
+    font-size: 20px;
 }
 
+.navigation{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
 .logoheader{
     width: 15%;
 }
 
+.login{
+    width: 8%;
+    margin: 35px 10px;
+}
+
+.connection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.name{
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
 
 

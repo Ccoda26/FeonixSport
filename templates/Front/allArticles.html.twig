@@ -7,7 +7,10 @@
             Ma liste d'article
 
     </h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('Article_Insert') }}">Création d'article</a>
 
+    {% endif %}
     {% for article in articleslist %}
 
         <h2><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title }}</a></h2>

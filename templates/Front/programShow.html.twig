@@ -2,5 +2,24 @@
 
 
 {% block main %}
-    <h1>Le programme</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('Program_Update',{'id': program.id})}}"> Modifier ce programme </a>
+        <br>
+        <a href="{{ path('Program_Delete',{'id': program.id})}}"> Supprimer ce programme </a>
+    {% endif %}
+
+    <h1>{{ program.Title}}</h1>
+
+    <p>{{ program.Description }}</p>
+
+    <p>{{ program.Price }} Euros</p>
+
+    {% if program.Filename %}
+        <div>
+            <img src="{{ asset("assets/uploads/" ~ program.Filename.Filename) }}" alt="" >
+        </div>
+    {% endif %}
+
+
+
 {% endblock %}
