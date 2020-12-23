@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -168,9 +169,6 @@ class AdminArticleController extends AbstractController
      */
     Public Function DeleteArticle(EntityManagerInterface $entityManager,$id, DeleteImage $deleteImage){
 
-
-
-
         $article = $entityManager->getRepository(Article::class)->find($id);
 
         $entityManager->remove($article);
@@ -201,10 +199,29 @@ class AdminArticleController extends AbstractController
             // On répond en json
             $message =  new JsonResponse(['success' => 1]);
         }else{
-            $message=  new JsonResponse(['error' => 'Token Invalide'], 400);
+//            $message=  new JsonResponse(['error' => 'Token Invalide'], 400);
         }
         return $message;
     }
 
+//    /**
+//     * @param SessionInterface $session
+//     * @param $id
+//     * @return RedirectResponse
+//     * @Route("/picture/delete/{id}", name="delete_picture")
+//     */
+//    public function RemovePicture(SessionInterface $session, $id){
+//        $Filename = $session->get('Filename');
+//        dd($session->get('Filename', $Filename));
+//
+//        foreach (array_keys($pictures) as $picture)
+//        {
+//            unset($picture[$id]);
+//        }
+//        $session->set('picture', $pictures);
+//
+//
+//        return  $this->redirectToRoute('Admin_Article_Show');
+//    }
 }
 

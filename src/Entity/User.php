@@ -72,24 +72,20 @@ class User implements UserInterface
     private $programs;
 
     /**
-     * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="user")
-     */
-    private $appointments;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phoneNumber;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="user")
      */
-    private $activtion_token;
+    private $appointments;
 
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -115,7 +111,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -142,7 +138,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -242,6 +238,18 @@ class User implements UserInterface
     }
 
 
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(?string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Appointment[]
      */
@@ -272,27 +280,5 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
 
-    public function setPhoneNumber(?string $phoneNumber): self
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    public function getActivtionToken(): ?string
-    {
-        return $this->activtion_token;
-    }
-
-    public function setActivtionToken(?string $activtion_token): self
-    {
-        $this->activtion_token = $activtion_token;
-
-        return $this;
-    }
 }

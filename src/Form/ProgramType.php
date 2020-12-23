@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Program;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,10 +20,18 @@ class ProgramType extends AbstractType
             ->add('Title')
             ->add('Description')
             ->add('Price')
-            ->add('level')
-            ->add('theme')
+            ->add('level',ChoiceType::class,[
+                'choices' => [
+                    'débutant' => 'débutant',
+                    'intermédiaire' => 'intermédiaire',
+                    'confirmé' => 'confirmé'
+                ]
+            ])
+            ->add('category',EntityType::class,[
+                    "class"=> Category::class,
+                    "choice_label"=>"Category"
+            ])
             ->add('published')
-
             ->add('Filename', FileType::class,[
                 'label' => 'Uploadez votre image',
 //                'label' => false,

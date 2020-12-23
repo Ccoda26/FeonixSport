@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Exercise;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineExtensions\Query\Mysql\Rand;
+use http\Env\Request;
 
 /**
  * @method Exercise|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,15 +38,16 @@ class ExerciseRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Exercise
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
+//    public function randomEx(): ?Exercise
+//    {
+//        return $this->createQueryBuilder('e')
+//            ->select('e')
+//            ->setParameter('limit', 1)
+//            ->o(\rand())
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
+
 }

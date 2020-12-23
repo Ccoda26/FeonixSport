@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+    <h1>Les rendez vous</h1>
+    <section class="container">
+
+        {{ form_start(form) }}
+
+        {{ form(form) }}
+
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}

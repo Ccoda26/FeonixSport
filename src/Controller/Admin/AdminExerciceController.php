@@ -4,10 +4,10 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Category;
 use App\Entity\Exercise;
 use App\Entity\Picture;
 use App\Form\ExerciceType;
-use App\Repository\ExerciseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,10 +20,9 @@ class AdminExerciceController extends AbstractController
 {
     /**
      * @Route("/admin/exercice", name="Admin_All_Exercices")
-     * @param ExerciseRepository $exerciseRepository
      * @return Response
      */
-    public function AllExercices(ExerciseRepository $exerciseRepository)
+    public function AllExercices()
     {
         return $this->redirectToRoute('All_Exercices');
     }
@@ -51,6 +50,7 @@ class AdminExerciceController extends AbstractController
     {
 
         $exercices = new Exercise();
+
 
         $form = $this->createForm(ExerciceType::class, $exercices);
 
@@ -80,6 +80,12 @@ class AdminExerciceController extends AbstractController
                     $picture->setFilename($newfilename);
                     $exercices->addFilename($picture);
                 }
+
+//                $category = new Category();
+//                $category->addExercice()->getId();
+//                $exercices->setCategory($category);
+//
+//                dd($category);
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($exercices);
@@ -146,12 +152,11 @@ class AdminExerciceController extends AbstractController
                 $entityManager->persist($exercices);
                 $entityManager->flush();
 
-//         si formulaire valid et envoyer
+            }
+//            si formulaire valid et envoyer
                 return $this->redirectToRoute('Exercice_Show', [
                     'id' => $exercices->getId(),
                 ]);
-            }
-
         }
         return $this->render('admin/updateExercice.html.twig', [
             'form' => $form->createView(),

@@ -19,6 +19,8 @@
                 <img src="{{ asset("assets/uploads/" ~ article.Filename) }}" alt="" >
             </div>
             {% if is_granted('ROLE_ADMIN') %}
+                {{ dump(article) }}
+{#                <a href="{{ path('delete_picture',{'id': article.id}) }}"> Supprimer cet article </a>#}
                 <a href="{{ path('delete_article_image',{'id': article.id})}}" data-delete data-token="{{ csrf_token('delete' ~ article.id )}}"> Supprimer cette image </a>
             {% endif %}
         {% endfor %}

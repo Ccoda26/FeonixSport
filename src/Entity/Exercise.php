@@ -36,9 +36,14 @@ class Exercise
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Picture::class, inversedBy="exercises", cascade={"persist"}))
+     * @ORM\ManyToMany(targetEntity=Picture::class, inversedBy="exercises", cascade={"persist"})
      */
     private $Filename;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="Exercices", cascade={"persist"})
+     */
+    private $category;
 
     public function __construct()
     {
@@ -107,6 +112,18 @@ class Exercise
     public function removeFilename(Picture $filename): self
     {
         $this->Filename->removeElement($filename);
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

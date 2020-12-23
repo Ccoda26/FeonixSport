@@ -18,43 +18,63 @@ class Appointment
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $theme;
+    private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $level;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $date;
+    private $Date;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="time",nullable=true)
      */
-    private $price;
+    private $starthour;
+
+    /**
+     * @ORM\Column(type="time",nullable=true)
+     */
+    private $endHour;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $dispo;
+
+    /**
+     * @ORM\Column(type="boolean",nullable=true )
+     */
+    private $reserver;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments")
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $Price;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTheme(): ?string
+    public function getTitle(): ?string
     {
-        return $this->theme;
+        return $this->title;
     }
 
-    public function setTheme(string $theme): self
+    public function setTitle(string $title): self
     {
-        $this->theme = $theme;
+        $this->title = $title;
 
         return $this;
     }
@@ -64,7 +84,7 @@ class Appointment
         return $this->level;
     }
 
-    public function setLevel(?string $level): self
+    public function setLevel(string $level): self
     {
         $this->level = $level;
 
@@ -73,36 +93,84 @@ class Appointment
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->Date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(\DateTimeInterface $Date): self
     {
-        $this->date = $date;
+        $this->Date = $Date;
+
+        return $this;
+    }
+
+    public function getStarthour(): ?\DateTimeInterface
+    {
+        return $this->starthour;
+    }
+
+    public function setStarthour(\DateTimeInterface $starthour): self
+    {
+        $this->starthour = $starthour;
+
+        return $this;
+    }
+
+    public function getEndHour(): ?\DateTimeInterface
+    {
+        return $this->endHour;
+    }
+
+    public function setEndHour(\DateTimeInterface $endHour): self
+    {
+        $this->endHour = $endHour;
+
+        return $this;
+    }
+
+    public function getDispo(): ?bool
+    {
+        return $this->dispo;
+    }
+
+    public function setDispo(bool $dispo): self
+    {
+        $this->dispo = $dispo;
+
+        return $this;
+    }
+
+    public function getReserver(): ?bool
+    {
+        return $this->reserver;
+    }
+
+    public function setReserver(bool $reserver): self
+    {
+        $this->reserver = $reserver;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
 
     public function getPrice(): ?float
     {
-        return $this->price;
+        return $this->Price;
     }
 
-    public function setPrice(float $price): self
+    public function setPrice(float $Price): self
     {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getUser(): ?user
-    {
-        return $this->user;
-    }
-
-    public function setUser(?user $user): self
-    {
-        $this->user = $user;
+        $this->Price = $Price;
 
         return $this;
     }

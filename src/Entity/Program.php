@@ -53,6 +53,11 @@ class Program
      */
     private $Filename;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="Program")
+     */
+    private $category;
+
 
     public function getId(): ?int
     {
@@ -140,6 +145,18 @@ class Program
     public function setFilename(?Picture $Filename): self
     {
         $this->Filename = $Filename;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

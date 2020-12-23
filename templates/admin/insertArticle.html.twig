@@ -5,9 +5,9 @@
     <h1>
         Insertion d'article
     </h1>
-
+<section class="width-90 center">
     {{  form_start(form, {'attr': {'class': 'container myimage'}}) }}
-    <section>
+
         {{ form_row(form.title) }}
 
         {{ form_row(form.description) }}
@@ -26,9 +26,9 @@
 
 
 
-    </section>
-    {{  form_end(form) }}
 
+    {{  form_end(form) }}
+    </section>
 
     <script src="{{ asset('assets/js/AddForm.js') }}" > </script>
 

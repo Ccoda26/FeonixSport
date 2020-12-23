@@ -5,9 +5,38 @@
     box-sizing: border-box;
 }
 
+.width-33{
+    width: 33%;
+}
+
+.width-50{
+    width: 50%;
+}
+
+.width-90{
+    width: 90%;
+}
+.center{
+    margin: auto;
+}
+
+.milieu{
+    align-self: center;
+}
+
+.text-center{
+    text-align: center;
+}
 .resp{
     width: 100%;
     height: auto;
+}
+.flex{
+    display: flex;
+}
+
+.wrap{
+    flex-wrap: wrap;
 }
 
 li{
@@ -16,20 +45,26 @@ li{
 
 a{
     text-decoration: none;
-    color: #e63a2b;
 }
 
 
 /* Header */
-header{
-    width: 100%;
+.panier{
+    width: 3%;
+    margin-top: 10px;
+    text-align: center;
+}
 
+.panier>p{
+    color: red;
+}
+
+header{
     background-color: #000033 ;
 
 }
 
-nav{
-    display: flex;
+.navheader{
     flex-direction: column;
     justify-content: flex-end;
 }
@@ -44,13 +79,27 @@ nav{
     font-size: 20px;
 }
 
+.lienHeader{
+    color:#e63a2b;
+    font-family: Nunito, SansSerif, Arial;
+    font-weight: 600;
+}
+
+.logout{
+    border: black 1px solid;
+    border-radius: 50px;
+    background-color: red;
+    color: black;
+    padding: 1px;
+}
+
 .navigation{
     width: 95%;
     margin: auto;
     display: flex;
     justify-content: space-between;
 }
-.logoheader{
+.logo{
     width: 15%;
 }
 
@@ -70,4 +119,42 @@ nav{
     text-align: center;
 }
 
+/* Footer */
+footer{
+    margin-top: 20px;
+    padding: 5px 0 5px;
+    background-color: #AAAAAA;
 
+}
+
+.footcontain{
+    justify-content: space-between;
+}
+
+.mediafooter{
+    justify-content: center;
+}
+
+.foottitle{
+    font-size: 12px;
+}
+.SocialPicture{
+    width: 5%;
+    margin: 5px;
+}
+
+.footnav{
+    width: 10%;
+}
+
+/* Main HomePage*/
+.video{
+    height: 90vh;
+}
+
+
+
+/* page qui suisje */
+.coachpicture{
+    width: 20%;
+}

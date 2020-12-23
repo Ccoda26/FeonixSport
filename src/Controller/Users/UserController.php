@@ -4,36 +4,45 @@
 namespace App\Controller\Users;
 
 
+use App\Entity\Appointment;
 use App\Entity\User;
+use App\Form\AdminAppointmentType;
 use App\Form\UserType;
-use Doctrine\ORM\EntityManagerInterface;
-use Monolog\Handler\SwiftMailerHandler;
+use App\Repository\AppointmentRepository;
+use CalendarBundle\Event\CalendarEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security\UserAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+
 
 
 class UserController extends AbstractController
 {
 
+//    private $appointmentRepository;
+//    private $router;
+//
+//    public function __construct(
+//        BookingRepository $bookingRepository,
+//        UrlGeneratorInterface $router
+//    )
+//    {
+//        $this->bookingRepository = $bookingRepository;
+//        $this->router = $router;
+//    }
 
-    /**
+
+        /**
      * @Route("/inscription", name="sign_page")
      * @param Request $request
-     * @param EntityManagerInterface $entityManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
     public function newUser(Request $request,
                             UserPasswordEncoderInterface $passwordEncoder
-//                            GuardAuthenticatorHandler $guardAuthenticatorHandler,
-//                            UserAuthenticatorInterface $authenticator,
-//                            SwiftMailerHandler $mailer
-
 ){
 
         $user = new User();
@@ -66,13 +75,5 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route ("/MaPage", name="User_Page")
-     */
 
-    public function userPage(){
-
-        return $this->render('Front/userPage.html.twig');
-    }
 }

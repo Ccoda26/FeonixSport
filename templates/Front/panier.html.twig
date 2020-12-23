@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+
+    {% if items | length >0 %}
+        <table class="width-90 center">
+            <thead>
+            <tr>
+                <th>Nom du Produit</th>
+                <th>programme</th>
+                <th>Prix</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.program.Title }}</td>
+                    <td>
+                        <div class="width-33 center">
+                            <img src="{{ asset("assets/uploads/" ~ item.program.Filename.Filename) }}" alt="" class="resp">
+                        </div>
+                    </td>
+                    <td>{{ item.program.price }} €</td>
+                    <td>
+                        <a href="{{ path('Remove_panier',{'id' : item.program.id}) }}"> Supprimer cet élément
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2" class="text-center">Total :</td>
+                <td>{{ total }}</td>
+                <td> </td>
+            </tr>
+            </tfoot>
+        </table>
+
+
+
+    {% else  %}
+        <h1>Ton panier est vide</h1>
+    {% endif %}
+
+
+
+
+{% endblock %}
