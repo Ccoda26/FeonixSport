@@ -7,23 +7,28 @@
         <br>
         <a href="{{ path('Exercice_Delete',{'id': exercice.id})}}"> Supprimer cet exercice </a>
     {% endif %}
-    <article>
-        <h1>L'exercice n° {{ exercice.id }}</h1>
+    <h1 class="text-center"> {{  exercice.name|capitalize }} </h1>
+    <article class="flexblock center">
+        <div class="unelement">
+            <p>{{ exercice.description }}</p>
+            {#            <p>{{ dump(exercice.category) }}</p>#}
+        </div>
+        <div class="unelement">
+            {% for exercice in exercice.filename [:1] %}
 
-        <h2> {{  exercice.name}}</h2>
-        <p>{{ exercice.description }}</p>
-        <p>{{ dump(exercice.category) }}</p>
+                {% if exercice.filename %}
+                    <div class="width-90 text-center">
 
-        {% for exercice in exercice.filename %}
-
-            {% if exercice.filename %}
-                <div class="width-33">
-                    <img src="{{ asset("assets/uploads/" ~ exercice.Filename) }}" alt="" class="resp">
-                </div>
-                <a href="{{ path('delete_exercice_image',{'id': exercice.id})}}" data-delete data-token="{{ csrf_token('delete' ~ exercice.id )}}"> Supprimer cette image </a>
-
-            {% endif %}
-        {% endfor %}
+                        <img src="{{ asset("assets/uploads/" ~ exercice.Filename ) }}" alt="" class="resp">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('delete_exercice_image',{'id': exercice.id})}}"
+                               data-delete data-token="{{ csrf_token('delete' ~ exercice.id )}}"
+                               class="delete"> Supprimer cette image </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </article>
     <script src="{{ asset('assets/js/Picture.js') }}"></script>
 {% endblock %}

@@ -9,20 +9,20 @@
     {% elseif app.user %}
         <a href="{{ path('panier_plein', {'id': program.id}) }}"> Ajouter au panier</a>
     {% else %}
-        <a href="{{ path('app_login', {'id': program.id}) }}"> Ajouter au panier</a>
+        <a href="{{ path('app_login', {'id': program.id}) }}">me connecter pour commander</a>
     {% endif %}
+    <h1 class="text-center">{{ program.Title}}</h1>
+    <section class="flexblock width-90 center">
 
-    <section class="flex width-90 center">
-        <div class="width-50 text-center milieu">
-            <h1>{{ program.Title}}</h1>
+        <div class="unelement text-center milieu">
 
             <p>{{ program.Description }}</p>
 
             <p>{{ program.Price }} Euros</p>
-            {{ dump(program.category) }}
+{#            {{ dump(program.category) }}#}
         </div>
         {% if program.Filename %}
-            <div class="width-50">
+            <div class="unelement">
                 <img src="{{ asset("assets/uploads/" ~ program.Filename.Filename) }}" alt="" class="resp">
             </div>
         {% endif %}

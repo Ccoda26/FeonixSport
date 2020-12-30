@@ -2,14 +2,31 @@
 
 
 {% block main %}
-{{  form_start(form, {'attr': {'class': 'container'}}) }}
-<section>
+{{  form_start(form, {'attr': {'class': 'form'}}) }}
+    <section >
+        <div class="formBloc">
+            <h2>{{ form_label(form.name) }}</h2>
+            {{ form_widget(form.name, { 'attr' : {'class' : 'formTitle'} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.description) }}</h2>
+            {{ form_widget(form.description, { 'attr' : {'class' : 'formDescription'} }) }}
+        </div>
+        <div>
+            <h2>{{ form_label(form.level) }}</h2>
+            {{ form_widget(form.level,  {'attr' : {'class' : ''} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.category) }}</h2>
+            {{ form_widget(form.category,  {'attr' : {'class' : ''} }) }}
+        </div>
+        <div class="formFile">
+            <h2>{{ form_label(form.Filename) }}</h2>
+            {{ form_widget(form.Filename, { 'attr' : {'class' : 'formFile'} }) }}
+        </div>
 
-
-    {{ form(form) }}
-
-
-</section>
+        {{ form_row(form.valider, { 'attr' : {'class' : 'submit'} }) }}
+    </section>
 {{  form_end(form) }}
 
 {% endblock %}

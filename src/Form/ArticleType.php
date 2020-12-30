@@ -31,7 +31,6 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
-
             ])
             ->add('valider', SubmitType::class)
         ;

@@ -11,13 +11,13 @@
     {% endif %}
     <section  class="flex width-90 wrap center">
     {% for exercice in exerciceList %}
-    <article class="width-33 text-center">
+    <article class="unarticle text-center">
         {% for exercice in exercice.filename %}
         <div>
             <img src="{{ asset("assets/uploads/" ~ exercice.Filename) }}" alt="" class="resp">
         </div>
         {% endfor %}
-        <h2><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name }}</a></h2>
+        <h2><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name|capitalize }}</a></h2>
     </article>
     {% endfor %}
     </section>

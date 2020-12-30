@@ -1,15 +1,39 @@
 {% extends "base.html.twig" %}
 
 
+
 {% block main %}
-{{  form_start(form, {'attr': {'class': 'container'}}) }}
-<section>
+    <h1 class="text-center">Modification de l'article</h1>
 
+    {{  form_start(form, {'attr': {'class': 'form'}}) }}
+    <section>
+        <div>
+            <h2>{{ form_label(form.title) }}</h2>
+            {{ form_widget(form.title, { 'attr' : {'class' : 'formTitle'} }) }}
+        </div>
+        <div>
+            <h2>{{ form_label(form.description) }}</h2>
+            {{ form_widget(form.description, { 'attr' : {'class' : 'formDescription'} }) }}
+        </div>
+        <div>
+            <h2>{{ form_label(form.content) }}</h2>
+            {{ form_widget(form.content,  {'attr' : {'class' : 'formContent'} }) }}
+        </div>
+        <div>
+            <h2>{{ form_label(form.creationDate) }}</h2>
+            {{ form_widget(form.creationDate,  {'attr' : {'class' : 'formDate'} }) }}
+        </div>
+        <div class="formFile">
+            <h2>{{ form_label(form.Filename) }}</h2>
+            {{ form_widget(form.Filename, { 'attr' : {'class' : 'formFile'} }) }}
+        </div>
 
-    {{ form(form) }}
+        {{ form_row(form.published) }}
 
+        {{ form_row(form.valider, { 'attr' : {'class' : 'submit'} }) }}
 
-</section>
-{{  form_end(form) }}
+    </section>
+    {{  form_end(form) }}
 
 {% endblock %}
+

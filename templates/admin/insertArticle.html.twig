@@ -5,30 +5,36 @@
     <h1>
         Insertion d'article
     </h1>
-<section class="width-90 center">
-    {{  form_start(form, {'attr': {'class': 'container myimage'}}) }}
 
-        {{ form_row(form.title) }}
-
-        {{ form_row(form.description) }}
-
-        {{ form_row(form.content) }}
-
-        {{ form_row(form.creationDate) }}
-<div class="newimage">
-    {{ form_row(form.Filename, {'class' : 'newimage'}) }}
-</div>
-{#        <button onclick="ajouterunnewfichier()">Ajouter une autre photo</button>#}
+    {{  form_start(form, {'attr': {'class': 'form'}}) }}
+    <section>
+        <div class="formBloc">
+            <h2>{{ form_label(form.title) }}</h2>
+            {{ form_widget(form.title, { 'attr' : {'class' : 'formTitle'} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.description) }}</h2>
+            {{ form_widget(form.description, { 'attr' : {'class' : 'formDescription'} }) }}
+        </div>
+        <div>
+            <h2>{{ form_label(form.content) }}</h2>
+            {{ form_widget(form.content,  {'attr' : {'class' : 'formContent'} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.creationDate) }}</h2>
+            {{ form_widget(form.creationDate,  {'attr' : {'class' : 'formDate'} }) }}
+        </div>
+        <div class="formFile">
+            <h2>{{ form_label(form.Filename) }}</h2>
+            {{ form_widget(form.Filename, { 'attr' : {'class' : 'formFile'} }) }}
+        </div>
 
         {{ form_row(form.published) }}
 
-        {{ form_row(form.valider) }}
-
-
-
-
-    {{  form_end(form) }}
+        {{ form_row(form.valider, { 'attr' : {'class' : 'submit'} }) }}
     </section>
+    {{  form_end(form) }}
+
 
     <script src="{{ asset('assets/js/AddForm.js') }}" > </script>
 

@@ -2,14 +2,35 @@
 
 
 {% block main %}
-{{  form_start(form, {'attr': {'class': 'container'}}) }}
-<section>
-
-
-    {{ form(form) }}
-
-
-</section>
+    {{  form_start(form, {'attr': {'class': 'form'}}) }}
+    <section >
+        <div class="formBloc">
+            <h2>{{ form_label(form.Title) }}</h2>
+            {{ form_widget(form.Title, { 'attr' : {'class' : 'formTitle'} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.Description) }}</h2>
+            {{ form_widget(form.Description, { 'attr' : {'class' : 'formDescription'} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.Price) }}</h2>
+            {{ form_widget(form.Price, { 'attr' : {'class' : 'formPrice'} }) }} euros
+        </div>
+        <div>
+            <h2>{{ form_label(form.level) }}</h2>
+            {{ form_widget(form.level,  {'attr' : {'class' : ''} }) }}
+        </div>
+        <div class="formBloc">
+            <h2>{{ form_label(form.category) }}</h2>
+            {{ form_widget(form.category,  {'attr' : {'class' : ''} }) }}
+        </div>
+        <div class="formFile">
+            <h2>{{ form_label(form.Filename) }}</h2>
+            {{ form_widget(form.Filename, { 'attr' : {'class' : 'formFile'} }) }}
+        </div>
+        {{ form_row(form.published) }}
+        {{ form_row(form.valider, { 'attr' : {'class' : 'submit'} }) }}
+    </section>
 {{  form_end(form) }}
 
 {% endblock %}

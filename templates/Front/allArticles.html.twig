@@ -11,9 +11,9 @@
         <a href="{{ path('Article_Insert') }}">Création d'article</a>
 
     {% endif %}
-    <section  class="flex width-90 wrap center">
-        {% for article in articleslist %}
-            <article class="width-33 text-center">
+    <section  class="flexblock width-90 wrap center">
+        {% for article in articleslist|reverse %}
+            <article class="unarticle text-center">
                 <h2><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title }}</a></h2>
                 <p>{{ article.description }}</p>
             </article>
