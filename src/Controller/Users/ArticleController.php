@@ -28,10 +28,32 @@ class ArticleController extends AbstractController
      */
     public function ArticlesShow(ArticleRepository $articleRepository, $id){
 
+        //findby pour trouver tout les articles en relation avec l'id demandé
         $article = $articleRepository->find($id);
+//        $picture = [];
+            $picture = $article->getFilename();
+
+            $text = $article->getContent();
+//            dd($text);
+            $textcut = explode('.', $text);
+
+//        dd($textcut);
+
+
+
+
+        //déclare un array $pictures ou tu va stocker toutes les photos trouver dans le findby
+
+        //ensuite en twig tu fait un lenght de $pictures pour savoir combien tu en as
+        // pour ensuite gêrer l'affichage, ex:
+        // {% if $pictures|lenght = 1 %}
+        //      <img 0 de mon array>
+        //{% endif %}
 
         return $this->render('Front/articleShow.html.twig',[
-            "article" => $article
+            "article" => $article,
+            "picture" => $picture,
+            "textcut" => $textcut
         ]);
     }
 

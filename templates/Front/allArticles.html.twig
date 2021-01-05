@@ -2,21 +2,33 @@
 
 
 {% block main %}
-    <h1>
-
-            Ma liste d'article
-
+    <h1 class="text-center titre">
+        Ma liste d'article
     </h1>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('Article_Insert') }}">Création d'article</a>
+        <div class="adminlink">
+            <a href="{{ path('Article_Insert') }}" >Création d'article</a>
+        </div>
 
     {% endif %}
     <section  class="flexblock width-90 wrap center">
         {% for article in articleslist|reverse %}
-            <article class="unarticle text-center">
-                <h2><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title }}</a></h2>
-                <p>{{ article.description }}</p>
-            </article>
+            {% if is_granted('ROLE_ADMIN')%}
+                <article class="unarticle text-center">
+                    <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title }}</a></h2>
+                    <p>{{ article.description }}</p>
+                    {% if article.published %}
+                        <p>article publié</p>
+                    {% endif %}
+                </article>
+            {% else %}
+                {% if article.published %}
+                    <article class="unarticle text-center">
+                        <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title }}</a></h2>
+                        <p>{{ article.description }}</p>
+                    </article>
+                {% endif %}
+            {% endif %}
         {% endfor %}
     </section>
 {% endblock %}

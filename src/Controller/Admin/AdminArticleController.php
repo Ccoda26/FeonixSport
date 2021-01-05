@@ -52,22 +52,14 @@ class AdminArticleController extends AbstractController
      * @param SluggerInterface $slugger
      * @return RedirectResponse|Response
      */
-    public function InsertArticle(Request $request,
-                                  EntityManagerInterface $entityManager,
-                                  SluggerInterface $slugger
-    )
+    public function InsertArticle(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
-
         $articles = new Article();
-
         $form = $this->createForm(ArticleType::class, $articles);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // On récupère les images transmises
             $pictures = $form->get('Filename')->getData();
-
             // On boucle sur les images
             foreach($pictures as $image){
                 // On génère un nouveau nom de fichier
@@ -78,13 +70,11 @@ class AdminArticleController extends AbstractController
                     $this->getParameter('images_directory'),
                     $fichier
                 );
-
                 // On crée l'image dans la base de données
                 $picture = new Picture();
                 $picture->setFilename($fichier);
                 $articles->addFilename($picture);
             }
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($articles);
             $entityManager->flush();
@@ -92,14 +82,9 @@ class AdminArticleController extends AbstractController
 //         si formulaire valid et envoyer
                 return $this->redirectToRoute('Admin_All_Articles');
             }
-
-
         return $this->render('admin/insertArticle.html.twig', [
-
             'form' => $form->createView(),
-
         ]);
-
     }
 
 

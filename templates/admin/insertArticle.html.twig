@@ -29,7 +29,8 @@
             {{ form_widget(form.Filename, { 'attr' : {'class' : 'formFile'} }) }}
         </div>
 
-        {{ form_row(form.published) }}
+
+        {{ form_widget(form.published) }}
 
         {{ form_row(form.valider, { 'attr' : {'class' : 'submit'} }) }}
     </section>

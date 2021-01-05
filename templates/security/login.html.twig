@@ -6,23 +6,23 @@
      {% endblock %}
 
   {% block main %}
-      <form method="post" class=" container">
+      <form method="post" class="container">
           {% if error %}
               <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
           {% endif %}
           <section class="milieu text-center">
               {% if app.user %}
                   <div class="mb-3">
-                      You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                      You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
                   </div>
               {% endif %}
-              <div class="">
+              <div>
                   <h1 class="h3 mb-3 font-weight-normal">Je me connecte</h1>
-                  <div class="col-6 m-auto">
+                  <div class="col-6 m-auto formBloc">
                       <label for="inputEmail">Email</label>
                       <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
                   </div>
-                  <div class="col-6 m-auto">
+                  <div class="col-6 m-auto formBloc">
                       <label for="inputPassword">Mot de passe</label>
                       <input type="password" name="password" id="inputPassword" class="form-control" required>
                   </div>
@@ -44,7 +44,7 @@
                       connexion
                   </button>
 
-                  <div>
+                  <div class="formBloc">
                       <h1 class="h3 mb-3 font-weight-normal">Je ne suis pas encore inscris</h1>
                       <a href="{{ path('sign_page') }}">Je m'inscris >>></a>
                   </div>

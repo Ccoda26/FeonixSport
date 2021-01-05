@@ -18,8 +18,9 @@ class ExerciseController extends AbstractController
 
         $exerciceList = $exerciseRepository->findAll();
 
+
         return $this->render('Front/allExercices.html.twig',[
-            'exerciceList' => $exerciceList
+            'exerciceList' => $exerciceList,
         ]);
     }
 

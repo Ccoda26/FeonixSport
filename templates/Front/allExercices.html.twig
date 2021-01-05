@@ -2,22 +2,24 @@
 
 
 {% block main %}
-    <h1>
+    <h1 class="text-center titre">
         Ma liste d'exercice
     </h1>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('Exercice_Insert') }}">Ajout d'exercice</a>
+        <div class="adminlink">
+            <a href="{{ path('Exercice_Insert') }}" >Ajout d'exercice</a>
+        </div>
 
     {% endif %}
     <section  class="flex width-90 wrap center">
     {% for exercice in exerciceList %}
     <article class="unarticle text-center">
-        {% for exercice in exercice.filename %}
+        {% for exercice in exercice.filename |slice(0,1) %}
         <div>
-            <img src="{{ asset("assets/uploads/" ~ exercice.Filename) }}" alt="" class="resp">
+            <img src="{{ asset("assets/uploads/" ~ exercice.Filename ) }}" alt="" class="resp">
         </div>
         {% endfor %}
-        <h2><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name|capitalize }}</a></h2>
+        <h2 class="articleTitle"><a href="{{ path('Exercice_Show', {'id': exercice.id}) }}">{{ exercice.name|capitalize }}</a></h2>
     </article>
     {% endfor %}
     </section>

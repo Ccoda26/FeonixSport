@@ -40,7 +40,7 @@
                         <a href="{{ path('app_login') }}" class="lienHeader"> connecte-toi</a>
                     </li>
                 {% endif %}
-                <li class="">
+                <li>
                     <a href="{{ path('panier_vide') }}" class="lienHeader">Panier</a>
                 </li>
                 <li><a href="{{ path('All_Articles') }}" class="lienHeader">Articles</a></li>
@@ -55,7 +55,7 @@
             </ul>
         </nav>
         <nav class="flexnone myHeaderlink">
-            <ul class=" myHeaderList" >
+            <ul class="myHeaderList" >
                 <li class="flex milieu"><a href="{{ path('All_Articles') }}" class="lienHeader">Articles</a></li>
                 <li class="flex milieu"><a href="{{ path('All_Exercices')}}" class="lienHeader">Exercices</a></li>
                 <li class="flex milieu"><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
@@ -77,83 +77,93 @@
             </div>
         {% else %}
             <div class="login flexnone">
-                <a href="{{ path('app_login') }}">
+                <a href="{{ path('app_login') }}" class="name">
                     <img src="{{ asset('assets/img/login.png') }}" alt="" class="resp">
+                   Connection  >>
                 </a>
             </div>
         {% endif %}
-        <div class="panier flexnone">
-            <a href="{{ path('panier_vide') }}">
-                <img src="{{ asset('assets/img/panier.svg') }}" alt="" class="resp">
-                <p>Panier</p>
-            </a>
-        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="panier flexnone">
+                <a href="#">
+                    <img src="{{ asset('assets/img/panier.svg') }}" alt="" class="resp">
+                    <p>Les commandes</p>
+                </a>
+            </div>
+            {% else %}
+            <div class="panier flexnone">
+                <a href="{{ path('panier_vide') }}">
+                    <img src="{{ asset('assets/img/panier.svg') }}" alt="" class="resp">
+                    <p>Panier</p>
+                </a>
+            </div>
+        {% endif %}
     </div>
 
 </header>
 
 <main>
     {% block main %}
-        <div>
+        <div class="Homevideo">
 {#            <iframe class="video resp" src="https://www.youtube.com/embed/MY4iHZnE8IU?rel=0&autoplay=1?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
         </div>
-        {% if is_granted('ROLE_ADMIN') %}
-            <h1>Ma page d'admin</h1>
-        {% elseif app.user %}
-            <h1>Ma page {{ app.user.name }} {{ app.user.lastname }}</h1>
-        {% else %}
-            <h1>Ma page d'acceuil</h1>
-        {% endif %}
+        <div class="Homeimg">
+{#            <img src="{{ asset('assets/img/imageHomResp.jpg') }}" alt="" class="resp">#}
+        </div>
 
 
-    <h1>Les derniers articles</h1>
+    <h1 class="titre text-center">Les derniers articles</h1>
     <article class="flexblock articleHome center">
         {% for article in articles|reverse [0:3] %}
             <div class="unarticle text-center">
-                {% for article in article.filename |length >1 %}
-                <div class="width-90">
-                    <img src="{{ asset("assets/uploads/" ~ article.Filename) }}" alt="" class="resp">
-                </div>
+                {% for article in article.filename  %}
+{#                <div class="width-90">#}
+{#                    <img src="{{ asset("assets/uploads/" ~ article.Filename) }}" alt="" class="resp">#}
+{#                </div>#}
                 {% endfor %}
-                <h2><a href="{{ path('Article_Show', {'id': article.id}) }}" class="path">{{ article.title }}</a></h2>
+                <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}" class="path">{{ article.title }}</a></h2>
                 <p> {{ article.description }}</p>
             </div>
         {% endfor %}
     </article>
-        <h1>Idée d'exercice</h1>
+        <h1 class="titre text-center">Idée d'exercice</h1>
         <article class="flexblock  center">
             <div class="exercice milieu center">
-                <h2 class="text-center">
+                <h2 class="text-center articleTitle">
                     <a href="{{ path('Exercice_Show', {'id': exercice.id}) }}" class="path">
-                        {{ exercice.name }}
+                        {{ exercice.name |capitalize }}
                     </a>
                 </h2>
                 <p>{{ exercice.description }}</p>
             </div>
             {% for exercice in exercice.filename %}
-                <div class="exercice center">
+                <div class="unarticle center">
                     <img src="{{ asset("assets/uploads/" ~ exercice.Filename) }}" alt="" class="resp">
                 </div>
             {% endfor %}
         </article>
 
-        <h1>Le programmes pour débuter le sport</h1>
+        <h1 class="titre text-center">Le meilleur programme pour débuter le sport</h1>
         <article class="flexblock width-90 center">
             {% if program.Filename %}
                 <div class="exercice">
-                    <img src="{{ asset('assets/uploads/' ~ program.Filename.Filename) }}" class="resp">
+                    <a href="{{ path('Program_Show', {'id': program.id}) }}">
+                        <img src="{{ asset('assets/uploads/' ~ program.Filename.Filename) }}" class="resp">
+                    </a>
                 </div>
             {% endif %}
             <div class="exercice milieu text-center">
-            <h2>
-                <a href="{{ path('Program_Show', {'id': program.id}) }}" class="path">
-                    {{ program.Title }}
+                <h2 class="articleTitle">
+                    <a href="{{ path('Program_Show', {'id': program.id}) }}" class="path">
+                        {{ program.Title }}
+                    </a>
+                </h2>
+                <p>{{ program.Description }}</p>
+                <h3>Niveau : {{ program.level }}</h3>
+                <a href="{{ path('Program_Show', {'id': program.id}) }}" class="boutton">
+                    Voir plus de détaille sur ce programme...
                 </a>
-            </h2>
-            <p>{{ program.Description }}</p>
-            <h3>Niveau : {{ program.level }}</h3>
             </div>
-
         </article>
     {% endblock %}
 </main>
@@ -185,6 +195,7 @@
 <script src="{{ asset('assets/js/menuBurger.js') }}">
 
 </script>
+
 {% block javascript %}
 
 {% endblock %}

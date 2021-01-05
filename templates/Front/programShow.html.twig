@@ -3,14 +3,27 @@
 
 {% block main %}
     {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('Program_Update',{'id': program.id})}}"> Modifier ce programme </a>
-    <br>
-    <a href="{{ path('Program_Delete',{'id': program.id})}}"> Supprimer ce programme </a>
+        <div class="adminlink">
+            <a href="{{ path('Program_Update',{'id': program.id})}}"> Modifier ce programme </a>
+
+        </div>
+        <div class="adminlink">
+            <a href="{{ path('Program_Delete',{'id': program.id})}}"> Supprimer ce programme </a>
+        </div>
     {% elseif app.user %}
-        <a href="{{ path('panier_plein', {'id': program.id}) }}"> Ajouter au panier</a>
+        <div>
+            <a href="{{ path('panier_plein', {'id': program.id}) }}"> Ajouter au panier</a>
+        </div>
     {% else %}
-        <a href="{{ path('app_login', {'id': program.id}) }}">me connecter pour commander</a>
+        <div>
+            <a href="{{ path('app_login', {'id': program.id}) }}">me connecter pour commander</a>
+        </div>
     {% endif %}
+    <br>
+
+
+
+
     <h1 class="text-center">{{ program.Title}}</h1>
     <section class="flexblock width-90 center">
 

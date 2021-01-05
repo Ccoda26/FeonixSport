@@ -22,8 +22,11 @@ class ExerciceType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom de l'exercice"
             ])
-            ->add('description')
+            ->add('description', TextType::class, [
+        'label' => "Description de l'exercice"
+    ])
             ->add('level', ChoiceType::class,[
+                    'label' => "Niveau de difficulté",
                 'choices' => [
                     'débutant' => 'débutant',
                     'intermédiaire' => 'intermédiaire',
@@ -31,12 +34,12 @@ class ExerciceType extends AbstractType
                 ]
             ])
             ->add('category',EntityType::class,[
+                'label' => "Catégorie",
                 "class"=> Category::class,
                 "choice_label"=>"Category"
             ])
             ->add('Filename', FileType::class,[
-                'label' => 'Uploadez votre image',
-//                'label' => false,
+                'label' => 'Joindre votre(ou vos) image(s)',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false

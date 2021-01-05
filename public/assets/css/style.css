@@ -5,6 +5,27 @@
     box-sizing: border-box;
 }
 
+a{
+    color: #0c2835;
+}
+
+.adminlink{
+    background-color: #B0413E;
+    width: 15%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 50px;
+    margin: 10px 10px;
+}
+
+.adminlink:hover{
+    background-color: #b42912;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
 .width-33{
     width: 33%;
 }
@@ -122,7 +143,7 @@ a{
 }
 
 .navheader {
-    background-color: #fafafa;
+    background-color: #000033;
     position: fixed;
     top: 15px;
     right: 15px;
@@ -138,6 +159,7 @@ a{
     transform: translateX(0);
     transition: 0.5s;
 }
+
 
 .navheader .listenavigation {
     padding: 0;
@@ -176,9 +198,26 @@ a{
     height: 20px;
     z-index: 200;
 }
+.panier a{
+    color: white;
+    text-align: center;
+}
 
 header{
     background-color: #000033 ;
+}
+
+.Homeimg{
+    width: 100%;
+    display: block;
+}
+
+.Homevideo{
+    display: none;
+}
+
+.articleTitle{
+    font-size: 18px;
 }
 
 @media screen and (min-width: 992px) {
@@ -214,12 +253,13 @@ header{
     }
 
     .myHeaderList li{
-        margin: 15px;
+        margin: 20px;
         font-size: 20px;
     }
 
     .panier{
         margin-top: 10px;
+        width: 5%;
         text-align: center;
     }
 
@@ -238,6 +278,13 @@ header{
         justify-content: center;
     }
 
+    .Homeimg{
+        display: none;
+    }
+
+    .Homevideo{
+        display: block;
+    }
 }
 
 
@@ -258,13 +305,13 @@ header{
     text-transform: uppercase;
 }
 .logo{
-    margin: auto;
+  
     width: 20%;
 }
 
 @media screen and (min-width: 1100px) {
     .logo {
-        width: 15%;
+        width: 13%;
     }
 }
 .navigation{
@@ -284,7 +331,7 @@ header{
 footer{
     margin-top: 20px;
     padding: 5px 0 5px;
-    background-color: #AAAAAA;
+    background-color: #000033;
 
 }
 
@@ -309,6 +356,16 @@ footer{
 }
 /* Main*/
 /*BTN delete*/
+.titre{
+    font-size: 20px;
+    margin: 10px;
+}
+
+.monblock{
+    background-color: grey;
+    padding: 5px;
+    color: white;
+}
 
 .delete{
     background-color: red;
@@ -346,6 +403,17 @@ footer{
 @media screen and (min-width: 992px){
     .unarticle{
         width: 33%;
+        margin: 30px 0 30px;
+    }
+    .progPicture{
+        width: 50%;
+    }
+    .titre{
+        font-size: 40px;
+        margin: 20px;
+    }
+    .articleTitle{
+        font-size: 30px;
     }
     .articleHome{
         padding: 50px;
@@ -373,7 +441,13 @@ footer{
 .boutton{
     margin: 20px;
     width: 15%;
-   padding: 5px;
+    padding: 5px;
+    color: darkslategray;
+}
+
+.boutton:hover{
+    text-decoration: underline;
+
 }
 
 /* formulaire article */

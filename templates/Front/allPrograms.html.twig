@@ -2,22 +2,24 @@
 
 
 {% block main %}
-    <h1>
+    <h1 class="text-center titre">
         Ma liste de programme
     </h1>
 
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('Program_Insert') }}">Ajout d'un programme</a>
+        <div class="adminlink">
+            <a href="{{ path('Program_Insert') }}">Ajout d'un programme</a>
+        </div>
     {% endif %}
     <section  class="flex width-90 wrap center">
         {% for program in programlist %}
             <article class="unarticle text-center">
                 <a href="{{ path('Program_Show', {'id': program.id}) }}">
-                    <h1>{{ program.Title }}</h1>
+                    <h1 class="articleTitle">{{ program.Title|capitalize }}</h1>
                 </a>
 
                 {% if program.Filename %}
-                    <div>
+                    <div class="progPicture center">
                         <img src="{{ asset('assets/uploads/' ~ program.Filename.Filename) }}" class="resp">
                     </div>
                 {% endif %}

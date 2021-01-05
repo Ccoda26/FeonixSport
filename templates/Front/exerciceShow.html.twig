@@ -2,12 +2,16 @@
 
 
 {% block main %}
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('Exercice_Update',{'id': exercice.id }) }}"> Modifier cet exercice </a>
-        <br>
-        <a href="{{ path('Exercice_Delete',{'id': exercice.id})}}"> Supprimer cet exercice </a>
-    {% endif %}
+
     <h1 class="text-center"> {{  exercice.name|capitalize }} </h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="adminlink">
+            <a href="{{ path('Exercice_Update',{'id': exercice.id }) }}" > Modifier cet exercice </a>
+        </div>
+        <div class="adminlink">
+            <a href="{{ path('Exercice_Delete',{'id': exercice.id})}}" > Supprimer cet exercice </a>
+        </div>
+    {% endif %}
     <article class="flexblock center">
         <div class="unelement">
             <p>{{ exercice.description }}</p>
