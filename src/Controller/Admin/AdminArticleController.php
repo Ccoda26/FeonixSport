@@ -75,9 +75,9 @@ class AdminArticleController extends AbstractController
                 $picture->setFilename($fichier);
                 $articles->addFilename($picture);
             }
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($articles);
-            $entityManager->flush();
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $entityManager->persist($articles);
+//            $entityManager->flush();
 
 //         si formulaire valid et envoyer
                 return $this->redirectToRoute('Admin_All_Articles');

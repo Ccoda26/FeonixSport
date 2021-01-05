@@ -8,27 +8,32 @@
 
     {{  form_start(form, {'attr': {'class': 'form'}}) }}
     <section>
+
         <div class="formBloc">
             <h2>{{ form_label(form.title) }}</h2>
             {{ form_widget(form.title, { 'attr' : {'class' : 'formTitle'} }) }}
+            {{ form_errors(form.title) }}
         </div>
         <div class="formBloc">
             <h2>{{ form_label(form.description) }}</h2>
             {{ form_widget(form.description, { 'attr' : {'class' : 'formDescription'} }) }}
+            {{ form_errors(form.description) }}
         </div>
         <div>
             <h2>{{ form_label(form.content) }}</h2>
             {{ form_widget(form.content,  {'attr' : {'class' : 'formContent'} }) }}
+           <p> {{ form_errors(form.content) }}</p>
         </div>
         <div class="formBloc">
             <h2>{{ form_label(form.creationDate) }}</h2>
             {{ form_widget(form.creationDate,  {'attr' : {'class' : 'formDate'} }) }}
+            {{ form_errors(form.creationDate) }}
         </div>
         <div class="formFile">
             <h2>{{ form_label(form.Filename) }}</h2>
             {{ form_widget(form.Filename, { 'attr' : {'class' : 'formFile'} }) }}
+            {{ form_errors(form.Filename) }}
         </div>
-
 
         {{ form_widget(form.published) }}
 
