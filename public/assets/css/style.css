@@ -30,6 +30,7 @@ a:hover{
     width: 33%;
 }
 
+
 .width-50{
     width: 50%;
 }
@@ -37,20 +38,20 @@ a:hover{
 .width-90{
     width: 90%;
 }
+
+
 .center{
     margin: auto;
 }
 
-.milieu{
-    align-self: center;
-}
+
+
 
 .text-center{
     text-align: center;
 }
-.resp{
-    width: 100%;
-    height: auto;
+.milieu{
+    align-self: center;
 }
 .flex{
     display: flex;
@@ -60,9 +61,24 @@ a:hover{
     display: block;
 }
 
+
+.resp{
+    width: 100%;
+    height: auto;
+}
 .flexnone{
     display: none;
 }
+.center{
+    margin: auto;
+}
+.name{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+
 
 .wrap{
     flex-wrap: wrap;
@@ -221,12 +237,19 @@ header{
 }
 
 @media screen and (min-width: 992px) {
-    .menuburger{
-        display: none;
+    .logout{
+        font-size: 20px;
     }
     .flexnone{
         display: flex;
     }
+
+
+
+    .menuburger{
+        display: none;
+    }
+
     .flexblock{
         display: flex;
     }
@@ -263,9 +286,6 @@ header{
         text-align: center;
     }
 
-    .logout{
-        font-size: 20px;
-    }
 
     .login{
         width: 8%;
@@ -290,7 +310,7 @@ header{
 
 .lienHeader{
     color:#e63a2b;
-    font-family: SansSerif, Arial;
+    font-family: Arial;
     font-weight: 600;
 }
 .logout{
@@ -307,6 +327,7 @@ header{
 .logo{
   
     width: 20%;
+    margin: auto;
 }
 
 @media screen and (min-width: 1100px) {
@@ -321,11 +342,7 @@ header{
     justify-content: space-between;
 }
 
-.name{
-    color: white;
-    font-size: 15px;
-    text-align: center;
-}
+
 
 /* Footer */
 footer{
@@ -347,7 +364,7 @@ footer{
     font-size: 12px;
 }
 .SocialPicture{
-    width: 5%;
+    width: 10%;
     margin: 5px;
 }
 
@@ -384,7 +401,7 @@ footer{
 
 .unarticle{
     width: 90%;
-    /*margin: auto;*/
+   margin: 30px;
 }
 .exercice{
     width: 90%;
@@ -464,11 +481,14 @@ footer{
     width: 50%;
 }
 
+
 .formDescription{
     width: 90%;
     height: 80px;
 }
-
+.red{
+    color: #2a3cad;
+}
 .formContent{
     width: 90%;
     height: 500px;
@@ -486,4 +506,9 @@ footer{
 
 .formPrice{
     width: 15%;
+}
+
+.white{
+    color: white;
+    font-size: 15px;
 }

@@ -53,6 +53,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+//            dd($_POST);
 
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -60,20 +61,29 @@ class UserController extends AbstractController
                     $form->get('password')->getData()
                 ));
 
-
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($user);
             $entityManager->flush();
 
+            return $this->redirectToRoute('app_login');
 
-        $this->addFlash('message', 'Utilisateur activé avec succès');
         }
+
+
         $formView = $form->createView();
+
 
         return $this->render('Front/inscription.html.twig',[
             'form' => $formView
         ]);
     }
 
-
 }
+
+
+//     * * @Assert\Regex(
+//     *     pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
+//     *     match=true,
+//     *     message="Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole."
+//     *)

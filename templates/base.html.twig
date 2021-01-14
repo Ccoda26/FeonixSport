@@ -2,6 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="CLAVEL Charlie" >
+    <meta name="keyword" content="sport, perte de poids, prise de muscle, hypertrophie, activité physique, muscle, gras" >
+    <meta name="description" content="Venez développer vos connaissances sur la meilleur plateforme de coaching sportive">
+    <meta name="robots" content="index, follow">
+
     <title>FeonixSport</title>
     {# bootstrap #}
 {#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">#}
@@ -25,9 +30,8 @@
         <nav class="navheader">
             <ul class="listenavigation" >
                 {% if app.user %}
-
-                    <li class="">
-                        <h1 class="text-center">{{ app.user.name }} {{ app.user.lastname }}</h1>
+                    <li>
+                        <h1 class="name">{{ app.user.name }} {{ app.user.lastname }}</h1>
                         <a href="{{ path('MyUser_page', {'id': app.user.id}) }}" class="lienHeader">
                             <h1>Mon Espace</h1>
                         </a>
@@ -59,10 +63,11 @@
                 <li class="flex milieu"><a href="{{ path('All_Articles') }}" class="lienHeader">Articles</a></li>
                 <li class="flex milieu"><a href="{{ path('All_Exercices')}}" class="lienHeader">Exercices</a></li>
                 <li class="flex milieu"><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
-                <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
+
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ path('Ajouter_Date') }}" class="lienHeader">Ajouter un Rendez-vous</a></li>
                 {% else %}
+                    <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
                     <li class="flex milieu"><a href="{{ path('Take_rdv') }}" class="lienHeader">Rendez-Vous</a></li>
                 {% endif %}
             </ul>
@@ -79,7 +84,7 @@
             <div class="login flexnone">
                 <a href="{{ path('app_login') }}" class="name">
                     <img src="{{ asset('assets/img/login.png') }}" alt="" class="resp">
-                   Connection  >>
+                   Connexion  >>
                 </a>
             </div>
         {% endif %}
@@ -105,25 +110,23 @@
 <main>
     {% block main %}
         <div class="Homevideo">
-{#            <iframe class="video resp" src="https://www.youtube.com/embed/MY4iHZnE8IU?rel=0&autoplay=1?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
+            <iframe class="video resp" src="https://www.youtube.com/embed/MY4iHZnE8IU?rel=0&autoplay=1?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="Homeimg">
-{#            <img src="{{ asset('assets/img/imageHomResp.jpg') }}" alt="" class="resp">#}
+            <img src="{{ asset('assets/img/imageHomResp.jpg') }}" alt="" class="resp">
         </div>
 
 
     <h1 class="titre text-center">Les derniers articles</h1>
     <article class="flexblock articleHome center">
         {% for article in articles|reverse [0:3] %}
+            {% if article.published %}
             <div class="unarticle text-center">
-                {% for article in article.filename  %}
-{#                <div class="width-90">#}
-{#                    <img src="{{ asset("assets/uploads/" ~ article.Filename) }}" alt="" class="resp">#}
-{#                </div>#}
-                {% endfor %}
-                <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}" class="path">{{ article.title }}</a></h2>
+
+                <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}" class="path">{{ article.title|capitalize }}</a></h2>
                 <p> {{ article.description }}</p>
             </div>
+            {% endif %}
         {% endfor %}
     </article>
         <h1 class="titre text-center">Idée d'exercice</h1>
@@ -169,13 +172,13 @@
 </main>
 
 <footer>
-    <div class="width-90 center flex footcontain">
-        <h1 class="milieu text-center width-33">Plan du site</h1>
+    <div class="width-90 center flexblock footcontain">
+        <h1 class="milieu text-center width-33 white flexnone">Plan du site</h1>
         <div class="logo footlogo width-33">
             <img src="{{ asset('assets/logo/FEONIX_logo_transparent.png') }}" alt="" class="resp">
         </div>
-        <nav class=" milieu text-center width-33">
-            <h2 class="foottitle">Venez suivre nos actualitées :</h2>
+        <nav class=" milieu text-center width-33 center">
+            <h2 class="foottitle white">Venez suivre nos actualitées :</h2>
             <div class="flex mediafooter">
                 <div class="SocialPicture">
                     <img src="{{ asset('assets/img/Fbicon.svg') }}" alt="" class="resp">

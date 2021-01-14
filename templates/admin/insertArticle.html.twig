@@ -17,7 +17,7 @@
         <div class="formBloc">
             <h2>{{ form_label(form.description) }}</h2>
             {{ form_widget(form.description, { 'attr' : {'class' : 'formDescription'} }) }}
-            {{ form_errors(form.description) }}
+            <span class="red">{{ form_errors(form.description) }}</span>
         </div>
         <div>
             <h2>{{ form_label(form.content) }}</h2>

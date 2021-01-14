@@ -9,15 +9,12 @@ use App\Controller\Service\DeleteImage;
 use App\Entity\Article;
 use App\Entity\Picture;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminArticleController extends AbstractController
 {
@@ -49,14 +46,14 @@ class AdminArticleController extends AbstractController
      * @Route("/admin/article/insert", name="Article_Insert")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
-     * @param SluggerInterface $slugger
      * @return RedirectResponse|Response
      */
-    public function InsertArticle(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function InsertArticle(Request $request, EntityManagerInterface $entityManager)
     {
         $articles = new Article();
         $form = $this->createForm(ArticleType::class, $articles);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             // On récupère les images transmises
             $pictures = $form->get('Filename')->getData();
@@ -75,9 +72,9 @@ class AdminArticleController extends AbstractController
                 $picture->setFilename($fichier);
                 $articles->addFilename($picture);
             }
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->persist($articles);
-//            $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($articles);
+            $entityManager->flush();
 
 //         si formulaire valid et envoyer
                 return $this->redirectToRoute('Admin_All_Articles');
@@ -92,12 +89,11 @@ class AdminArticleController extends AbstractController
      * @Route("/admin/article/update/{id}", name="Article_Update")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
-     * @param SluggerInterface $slugger
+     * @param $id
      * @return RedirectResponse|Response
      */
     public function UpdateArticle(Request $request,
                                   EntityManagerInterface $entityManager,
-                                  SluggerInterface $slugger,
                                   $id
     )
     {
@@ -161,6 +157,8 @@ class AdminArticleController extends AbstractController
 
         return $this->redirectToRoute('All_Articles');
     }
+
+
 
     /**
      * @Route("/admin/article/delete/picture/{id}", name="delete_article_image", methods={"DELETE"})

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,21 +23,44 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
+     *
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     *
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
+     *
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="date")
+     *
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
      */
     private $birthDate;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
+     * @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
+     *
+     * @Assert\Email(
+     *     message="votre email {{ value }} n'est pas valide"
+     * )
      */
     private $email;
 
@@ -48,21 +72,61 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     *
+     * @Assert\Length (
+     *     min="8",
+     *     minMessage="Vote mot de pase doit contenir au moins 8 caractère",
+     *      max="20",
+     *      maxMessage=" votre mot de passe doit faire moins de 20 caractères"
+     * )
+     *
+     * * @Assert\Regex(
+     *     pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
+     *     match=true,
+     *     message="Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole."
+     *)
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     *
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
      */
     private $adress;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * * @Assert\Length(
+     *     min="5",
+     *     minMessage="Vérifier que votre code postale est correct",
+     *     max="7",
+     *     maxMessage="Vérifier que votre code postale est correct"
+     * )
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^\(0\)[0-9]*$/",
+     *     message="veuillez entrez uniquement des chiffres"
+     * )
      */
     private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     *
+     *  @Assert\NotBlank (
+     *     message="ce champ ne peut pas ete vide"
+     * )
      */
     private $city;
 
@@ -73,6 +137,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *     min="8",
+     *     minMessage="Vérifier que votre numéro est correct",
+     *     max="12",
+     *     maxMessage="Vérifier que votre numéro est correct"
+     * )
+
      */
     private $phoneNumber;
 

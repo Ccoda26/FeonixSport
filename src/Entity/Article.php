@@ -32,11 +32,6 @@ class Article
      *     max="100",
      *     maxMessage="Votre titre est un peu trop long, essayez de le simplifier"
      * )
-     *
-     * @Assert\Regex(
-     *     pattern="/^[a-zA-Z0-9\-\_\\,]+$/",
-     *     message="le champs contient des caractères spéciaux"
-     * )
      */
     private $title;
 
@@ -46,22 +41,12 @@ class Article
      *  @Assert\NotBlank(
      *     message="Ce champs ne peut pas être vide"
      * )
-     *
-//     *  @Assert\Regex(
-//     *     pattern="/^[a-zA-Z0-9\()\]+$/",
-//     *     message="le champs contient des caractères spéciaux"
-//     * )
-     *
      */
     private $description;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      *
-//     *  @Assert\Regex(
-//     *     pattern="/^[a-zA-Z0-9\-\_\\,]+$/",
-//     *     message="le champs contient des caractères spéciaux"
-//     * )
      */
     private $content;
 
@@ -82,6 +67,7 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity=Picture::class, inversedBy="Articles", cascade="persist")
+     *
      */
     private $Filename;
 

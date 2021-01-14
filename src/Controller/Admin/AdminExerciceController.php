@@ -4,7 +4,6 @@
 namespace App\Controller\Admin;
 
 
-use App\Entity\Category;
 use App\Entity\Exercise;
 use App\Entity\Picture;
 use App\Form\ExerciceType;
@@ -134,7 +133,7 @@ class AdminExerciceController extends AbstractController
                     // this is needed to safely include the file name as part of the URL
                     $safeFilename = $slugger->slug($originalFilename);
                     // On génère un nouveau nom de fichier
-                    $newfilename = md5(uniqid()) . '.' . $image->guessExtension();
+                    $newfilename = md5(uniqid()) . '.' . $safeFilename->guessExtension();
 
                     // On copie le fichier dans le dossier uploads
                     $image->move(
@@ -148,16 +147,19 @@ class AdminExerciceController extends AbstractController
                     $exercices->addFilename($picture);
                 }
 
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($exercices);
-                $entityManager->flush();
+
 
             }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($exercices);
+            $entityManager->flush();
+
 //            si formulaire valid et envoyer
                 return $this->redirectToRoute('Exercice_Show', [
                     'id' => $exercices->getId(),
                 ]);
         }
+
         return $this->render('admin/updateExercice.html.twig', [
             'form' => $form->createView(),
 
@@ -179,6 +181,15 @@ class AdminExerciceController extends AbstractController
 
         return $this->redirectToRoute('All_Exercices');
     }
+
+
+
+
+
+
+
+
+
 
     /**
      * @Route("/admin/exercice/delete/picture/{id}", name="delete_exercice_image", methods={"DELETE"})

@@ -12,7 +12,7 @@
 
     {% endif %}
     <section  class="flex width-90 wrap center">
-    {% for exercice in exerciceList %}
+    {% for exercice in exerciceList|reverse %}
     <article class="unarticle text-center">
         {% for exercice in exercice.filename |slice(0,1) %}
         <div>
