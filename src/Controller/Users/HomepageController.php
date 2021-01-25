@@ -27,7 +27,7 @@ class HomepageController extends AbstractController
                              ProgramRepository $programRepository){
         $user = new User();
 
-        $articles = $articleRepository->findAll();
+        $articles = $articleRepository->findby(['published'=> 'true' ], ['creationDate' => 'DESC'], 3);
 
         $exercice = $exerciseRepository->findOneBy(['name' => 'squat']);
 

@@ -39,7 +39,7 @@ class ArticleType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('published', CheckboxType::class,[
-                'label' => "(Cochez la case pour publié cette article)",
+                'label' => "(Cochez la case pour publier cet article)",
                 'required' => false
             ] )
             ->add('Filename', FileType::class,[

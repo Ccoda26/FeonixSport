@@ -54,6 +54,7 @@ class AdminArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $articles);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             // On récupère les images transmises
             $pictures = $form->get('Filename')->getData();
@@ -72,13 +73,15 @@ class AdminArticleController extends AbstractController
                 $picture->setFilename($fichier);
                 $articles->addFilename($picture);
             }
-            $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($articles);
             $entityManager->flush();
 
 //         si formulaire valid et envoyer
                 return $this->redirectToRoute('Admin_All_Articles');
             }
+
+
         return $this->render('admin/insertArticle.html.twig', [
             'form' => $form->createView(),
         ]);

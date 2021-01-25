@@ -4,16 +4,15 @@
 namespace App\Controller\Users;
 
 
-use App\Entity\Appointment;
+
 use App\Entity\User;
-use App\Form\AdminAppointmentType;
+
 use App\Form\UserType;
-use App\Repository\AppointmentRepository;
-use CalendarBundle\Event\CalendarEvent;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -21,17 +20,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
 
-//    private $appointmentRepository;
-//    private $router;
-//
-//    public function __construct(
-//        BookingRepository $bookingRepository,
-//        UrlGeneratorInterface $router
-//    )
-//    {
-//        $this->bookingRepository = $bookingRepository;
-//        $this->router = $router;
-//    }
+
 
 
         /**

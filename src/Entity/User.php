@@ -80,11 +80,6 @@ class User implements UserInterface
      *      maxMessage=" votre mot de passe doit faire moins de 20 caractères"
      * )
      *
-     * * @Assert\Regex(
-     *     pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
-     *     match=true,
-     *     message="Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole."
-     *)
      *  @Assert\NotBlank (
      *     message="ce champ ne peut pas ete vide"
      * )
@@ -113,10 +108,7 @@ class User implements UserInterface
      *  @Assert\NotBlank (
      *     message="ce champ ne peut pas ete vide"
      * )
-     * @Assert\Regex(
-     *     pattern="/^\(0\)[0-9]*$/",
-     *     message="veuillez entrez uniquement des chiffres"
-     * )
+
      */
     private $zipcode;
 
@@ -149,14 +141,15 @@ class User implements UserInterface
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="client")
      */
-    private $appointments;
+    private $bookings;
 
     public function __construct()
     {
-        $this->appointments = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
+
 
 
     public function getId(): ?int
@@ -323,34 +316,35 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Appointment[]
+     * @return Collection|Booking[]
      */
-    public function getAppointments(): Collection
+    public function getBookings(): Collection
     {
-        return $this->appointments;
+        return $this->bookings;
     }
 
-    public function addAppointment(Appointment $appointment): self
+    public function addBooking(Booking $booking): self
     {
-        if (!$this->appointments->contains($appointment)) {
-            $this->appointments[] = $appointment;
-            $appointment->setUser($this);
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setClient($this);
         }
 
         return $this;
     }
 
-    public function removeAppointment(Appointment $appointment): self
+    public function removeBooking(Booking $booking): self
     {
-        if ($this->appointments->removeElement($appointment)) {
+        if ($this->bookings->removeElement($booking)) {
             // set the owning side to null (unless already changed)
-            if ($appointment->getUser() === $this) {
-                $appointment->setUser(null);
+            if ($booking->getClient() === $this) {
+                $booking->setClient(null);
             }
         }
 
         return $this;
     }
+
 
 
 }

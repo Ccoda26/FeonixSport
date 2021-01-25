@@ -27,9 +27,9 @@ class Article
      *     message="Ce champs ne peut pas être vide"
      * )
      * @Assert\Length(
-     *     min="5",
+     *     min=5,
      *     minMessage="Votre titre est trop court",
-     *     max="100",
+     *     max=100,
      *     maxMessage="Votre titre est un peu trop long, essayez de le simplifier"
      * )
      */
@@ -70,6 +70,8 @@ class Article
      *
      */
     private $Filename;
+
+
 
     public function __construct()
     {

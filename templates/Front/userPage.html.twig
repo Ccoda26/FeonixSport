@@ -9,25 +9,7 @@
      <h1>Mes rendez-vous</h1>
 
 
-     <div>
-         <table>
-             <tr>
-                 <td>Theme</td>
-                 <td>Niveau</td>
-                 <td>Heure de début</td>
-                 <td>Heure de fin</td>
-             </tr>
-
-             {% for appointment in appointmentlist %}
-                 <tr>
-                     <td>{{ appointment.theme }}</td>
-                     <td>{{ appointment.level }}</td>
-                     <td>{{ appointment.startDate|date('h:i') }}</td>
-                     <td>{{ appointment.endDate|date('h:i') }}</td>
-                 </tr>
-             {% endfor %}
-         </table>
-     </div>
+     <div id="calendar-holder"></div>
 
      <h1>Mes exercices préférés</h1>
 

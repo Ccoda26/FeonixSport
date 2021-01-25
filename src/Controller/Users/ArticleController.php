@@ -26,22 +26,18 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/show/{id}", name="Article_Show")
      */
-
-
-
-
-
     public function ArticlesShow(ArticleRepository $articleRepository, $id){
 
         //findby pour trouver tout les articles en relation avec l'id demandé
         $article = $articleRepository->find($id);
             //save all filename in $picture
+
             $picture = $article->getFilename();
             // save article content in $textun
-            $textun = $article->getContent();
+            $firsttext = $article->getContent();
             //i cut my string contain in $text on all . to obtain an array
-            $text = explode('.', $textun);
-//            dd(str_word_count($text));
+            $text = explode('.', $firsttext);
+
 
             //I send $text and $picture to my twig
         return $this->render('Front/articleShow.html.twig',[

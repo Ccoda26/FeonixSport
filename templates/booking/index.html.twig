@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
+{% endblock %}
+
+
+{% block main %}
+{{ dump(data) }}
+{#    <a href="{{ path('booking_new') }}">Create new booking</a>#}
+
+    <div id="calendar-holder" class="center width-90"></div>
+
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+
+<script>
+
+    window.onload = () => {
+        var calendarElt = document.querySelector("#calendar-holder")
+        var calendar = new FullCalendar.Calendar(calendarElt, {
+            initialView: 'timeGridWeek',
+            locale: 'fr',
+            buttonText: {
+                today:    'Aujourd\'hui',
+                month:    'Mois',
+                week:     'Semaine',
+                day:      'Jour',
+                list:     'Liste'
+            },
+            timeZone: 'Europe/Paris',
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth,timeGridWeek',
+
+            },
+
+            events: {{ data|raw }},
+            // editable: true,
+            // eventResizableFromStart: true
+
+        })
+        calendar.on('eventChange', (e) => {
+            let url = `/api/${e.event.id}/edit`
+
+            let donnees = {
+                "title": e.event.title,
+                "start": e.event.start,
+                "end": e.event.end,
+
+            }
+
+            let xhr = new XMLHttpRequest
+            xhr.open("PUT", url)
+            xhr.send(JSON.stringify(donnees))
+        })
+        calendar.render()
+    }
+
+</script>
+
+{% endblock %}
+{% endblock %}

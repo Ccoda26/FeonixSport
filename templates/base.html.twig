@@ -52,9 +52,9 @@
                 <li><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
                 <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('Ajouter_Date') }}" class="lienHeader">Ajouter des Rendez-vous</a></li>
+                    <li><a href="{{ path('booking_calendar') }}" class="lienHeader"> Rendez-vous</a></li>
                 {% else %}
-                    <li><a href="{{ path('Take_rdv') }}" class="lienHeader">Prise de Rendez-Vous</a></li>
+                    <li><a href="#" class="lienHeader">Prise de Rendez-Vous</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -65,10 +65,10 @@
                 <li class="flex milieu"><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('Ajouter_Date') }}" class="lienHeader">Ajouter un Rendez-vous</a></li>
+                    <li><a href="{{ path('booking_calendar') }}" class="lienHeader">Ajouter un Rendez-vous</a></li>
                 {% else %}
                     <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
-                    <li class="flex milieu"><a href="{{ path('Take_rdv') }}" class="lienHeader">Rendez-Vous</a></li>
+                    <li class="flex milieu"><a href="#" class="lienHeader">Rendez-Vous</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -119,7 +119,8 @@
 
     <h1 class="titre text-center">Les derniers articles</h1>
     <article class="flexblock articleHome center">
-        {% for article in articles|reverse [0:3] %}
+
+        {% for article in articles %}
             {% if article.published %}
             <div class="unarticle text-center">
 
