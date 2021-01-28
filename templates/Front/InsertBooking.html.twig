@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+
+    <h1>
+        Insertion d'article
+    </h1>
+
+    {{  form_start(form, {'attr': {'class': 'form'}}) }}
+
+
+{#    <section>#}
+
+    <div class="formBloc">
+        <h2>{{ form_label(form.title) }}</h2>
+        {{ form_widget(form.title, { 'attr' : {'class' : 'formTitle'} }) }}
+        {{ form_errors(form.title) }}
+    </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="formBloc">
+        <h2>{{ form_label(form.beginAt) }}</h2>
+        {{ form_widget(form.beginAt,  {'attr' : {'class' : 'formDate'} }) }}
+    </div>
+
+    <div class="formBloc">
+        <h2>{{ form_label(form.endAt) }}</h2>
+        {{ form_widget(form.endAt,  {'attr' : {'class' : 'formDate'} }) }}
+    </div>
+
+    {{ form_row(form.valider) }}
+
+    {{  form_end(form) }}
+
+{% endblock %}
+

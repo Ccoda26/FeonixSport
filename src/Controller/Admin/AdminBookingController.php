@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BookingController extends AbstractController
+class AdminBookingController extends AbstractController
 {
     /**
-     * @Route("/calendar", name="booking_calendar")
+     * @Route("admin/calendar", name="admin_booking_calendar")
      */
     public function index(BookingRepository $repository): Response
     {

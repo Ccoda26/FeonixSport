@@ -20,73 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3833b8a6-6895-4d0b-b162-aa793e71caea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201218125031.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201222190000.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/men.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/panier.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/086191b1b0c6e8c7cafe6ce8d94b1abd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/1af55c89d9d0e13215f8599c8180283a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/41bdb2e5411535aff53183cc1cf3055e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/574e91f97dcce7f4a1c3bcc389da6302.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/791047454dd99daeb315221d9ca8478b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/90775922b70ca3f9df3e1d9c93838a71.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/9a1af3cf2daa5b9e4409a1986ced6c43.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/afficheprogDebutant-5fe1e33a7866e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/bce3235a6165a5f9043d2f9592f085c6.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/c237c2cf157d590b186d95a15131f0da.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/ddceaf6ab5aef660ae85c3070d8f7263.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/fdb47781330bb159a014992b36d577a9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/uploads/fe3338d048de11f515e45d4e2d96c9f1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminAppointmentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Users/PanierController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/AdminAppointmentType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/UserAppointmentType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Front/panier.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/AddAppointment.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210128173741.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Users/BookingController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Front/InsertBooking.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/FeonixSport.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FeonixSport.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201202113314.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201218105251.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201217084840.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201218125153.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201217091635.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201218124448.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201217103215.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201218110703.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201217105143.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201222184934.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201217121554.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/calendar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminExerciceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminExerciceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Users/AppointmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Users/AppointmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Users/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Users/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Users/HomepageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Users/HomepageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Users/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Users/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Appointment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Appointment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Exercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Program.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Program.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AppointmentType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ExerciceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ExerciceType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProgramType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProgramType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ExerciseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ExerciseRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/WhoIAm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/WhoIAm.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/allAppointment.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/allArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/allArticles.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/allExercices.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/allExercices.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/allPrograms.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/allPrograms.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/articleShow.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/articleShow.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/exerciceShow.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/exerciceShow.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/programShow.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/programShow.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/takeAppointment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/takeAppointment.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Front/userPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/userPage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/insertArticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/insertArticle.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminBookingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Booking.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/BookingType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BookingType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -216,6 +158,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/twig-bundle" />
       <path value="$PROJECT_DIR$/vendor/tattali/calendar-bundle" />
       <path value="$PROJECT_DIR$/vendor/beberlei/doctrineextensions" />
+      <path value="$PROJECT_DIR$/vendor/twig/string-extra" />
     </include_path>
   </component>
   <component name="ProjectId" id="1l66axQCE14FnWaRFWzDVCuXbsT" />
@@ -232,6 +175,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../COURS_SYMFO/LibrariesProject" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -279,6 +223,7 @@
       <workItem from="1608627752507" duration="15397000" />
       <workItem from="1608643492580" duration="18000" />
       <workItem from="1608654470596" duration="10283000" />
+      <workItem from="1611853889287" duration="3764000" />
     </task>
     <servers />
   </component>
@@ -333,10 +278,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="478" y="116" width="579" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608655646203" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1608245004113">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1611856333611">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608245004113" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1611856333611" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607807470429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

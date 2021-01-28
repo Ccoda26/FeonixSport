@@ -32,7 +32,7 @@
                 {% if app.user %}
                     <li>
                         <h1 class="name">{{ app.user.name }} {{ app.user.lastname }}</h1>
-                        <a href="{{ path('MyUser_page', {'id': app.user.id}) }}" class="lienHeader">
+                        <a href="#" class="lienHeader">
                             <h1>Mon Espace</h1>
                         </a>
                     </li>
@@ -52,9 +52,9 @@
                 <li><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
                 <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('booking_calendar') }}" class="lienHeader"> Rendez-vous</a></li>
+                    <li><a href="{{ path('admin_booking_calendar') }}" class="lienHeader"> Rendez-vous</a></li>
                 {% else %}
-                    <li><a href="#" class="lienHeader">Prise de Rendez-Vous</a></li>
+                    <li><a href="{{ path('Insert_Date') }}" class="lienHeader">Prise de Rendez-Vous</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -65,16 +65,16 @@
                 <li class="flex milieu"><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('booking_calendar') }}" class="lienHeader">Ajouter un Rendez-vous</a></li>
+                    <li><a href="{{ path('admin_booking_calendar') }}" class="lienHeader">Ajouter un Rendez-vous</a></li>
                 {% else %}
                     <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
-                    <li class="flex milieu"><a href="#" class="lienHeader">Rendez-Vous</a></li>
+                    <li class="flex milieu"><a href="{{ path('Insert_Date') }}" class="lienHeader">Rendez-Vous</a></li>
                 {% endif %}
             </ul>
         </nav>
         {% if app.user %}
             <div class="login connection center flexnone">
-                <a href="{{ path('MyUser_page', {'id': app.user.id}) }}">
+                <a href="#">
                     <img src="{{ asset('assets/img/login.png') }}" alt="" class="resp">
                 </a>
                 <h1 class="name">{{ app.user.name }} {{ app.user.lastname }}</h1>
