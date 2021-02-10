@@ -10,27 +10,30 @@
     {{  form_start(form, {'attr': {'class': 'form'}}) }}
 
 
-{#    <section>#}
+    <section>
 
     <div class="formBloc">
         <h2>{{ form_label(form.title) }}</h2>
         {{ form_widget(form.title, { 'attr' : {'class' : 'formTitle'} }) }}
         {{ form_errors(form.title) }}
     </div>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
+
+        {% for message in app.flashes('succes') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="formBloc">
+            <h2>{{ form_label(form.date) }}</h2>
+            {{ form_widget(form.date,  {'attr' : {'class' : 'formDate'} }) }}
         </div>
-    {% endfor %}
-    <div class="formBloc">
-        <h2>{{ form_label(form.beginAt) }}</h2>
-        {{ form_widget(form.beginAt,  {'attr' : {'class' : 'formDate'} }) }}
-    </div>
 
     <div class="formBloc">
-        <h2>{{ form_label(form.endAt) }}</h2>
-        {{ form_widget(form.endAt,  {'attr' : {'class' : 'formDate'} }) }}
+        <h2>{{ form_label(form.hourchoice) }}</h2>
+        {{ form_widget(form.hourchoice,  {'attr' : {'class' : 'formDate'} }) }}
     </div>
+
+
 
     {{ form_row(form.valider) }}
 

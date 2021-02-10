@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,24 +25,27 @@ class Booking
      */
     private $title;
 
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     *
-     */
-    private $beginAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     *
-
-     */
-    private $endAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookings")
      */
     private $client;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ChoiceDate::class, inversedBy="bookings",cascade={persist})
+     */
+    private $hourchoice;
+
+
+    public function __construct()
+    {
+        $this->hourchoice = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,29 +64,6 @@ class Booking
         return $this;
     }
 
-    public function getBeginAt(): ?\DateTimeInterface
-    {
-        return $this->beginAt;
-    }
-
-    public function setBeginAt(?\DateTimeInterface $beginAt): self
-    {
-        $this->beginAt = $beginAt;
-
-        return $this;
-    }
-
-    public function getEndAt(): ?\DateTimeInterface
-    {
-        return $this->endAt;
-    }
-
-    public function setEndAt(?\DateTimeInterface $endAt): self
-    {
-        $this->endAt = $endAt;
-
-        return $this;
-    }
 
     public function getClient(): ?User
     {
@@ -94,4 +76,41 @@ class Booking
 
         return $this;
     }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChoiceDate[]
+     */
+    public function getHourchoice(): Collection
+    {
+        return $this->hourchoice;
+    }
+
+    public function addHourchoice(ChoiceDate $hourchoice): self
+    {
+        if (!$this->hourchoice->contains($hourchoice)) {
+            $this->hourchoice[] = $hourchoice;
+        }
+
+        return $this;
+    }
+
+    public function removeHourchoice(ChoiceDate $hourchoice): self
+    {
+        $this->hourchoice->removeElement($hourchoice);
+
+        return $this;
+    }
+
 }
