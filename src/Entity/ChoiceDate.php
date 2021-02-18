@@ -19,15 +19,21 @@ class ChoiceDate
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $hours;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Booking::class, mappedBy="hourchoice")
+     * @ORM\ManyToMany(targetEntity=Booking::class, mappedBy="hourchoice",cascade={"persist"})
      */
     private $bookings;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $hours;
 
 
 
@@ -70,6 +76,18 @@ class ChoiceDate
         return $this;
     }
 
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
     public function getHours(): ?string
     {
         return $this->hours;
@@ -81,6 +99,8 @@ class ChoiceDate
 
         return $this;
     }
+
+
 
 
 

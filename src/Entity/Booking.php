@@ -31,13 +31,9 @@ class Booking
      */
     private $client;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ChoiceDate::class, inversedBy="bookings",cascade={persist})
+     * @ORM\ManyToMany(targetEntity=ChoiceDate::class, inversedBy="bookings",cascade={"persist"})
      */
     private $hourchoice;
 
@@ -73,18 +69,6 @@ class Booking
     public function setClient(?User $client): self
     {
         $this->client = $client;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }

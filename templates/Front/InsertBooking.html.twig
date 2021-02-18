@@ -23,15 +23,24 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <div class="formBloc">
-            <h2>{{ form_label(form.date) }}</h2>
-            {{ form_widget(form.date,  {'attr' : {'class' : 'formDate'} }) }}
+
+        <div>
+            <label for="start">Start date:</label>
+
+            <input type="date" id="start" name="date"
+                   value="2018-07-22"
+                   min="2018-01-01" max="2022-12-31">
+        </div>
+        <div>
+            <label for="appt">Choose a time for your meeting:</label>
+
+            <input type="time" id="appt" name="hours"
+                   min="06:00" max="22:00" required>
+
+            <small>Office hours are 6am to 10pm</small>
         </div>
 
-    <div class="formBloc">
-        <h2>{{ form_label(form.hourchoice) }}</h2>
-        {{ form_widget(form.hourchoice,  {'attr' : {'class' : 'formDate'} }) }}
-    </div>
+
 
 
 

@@ -18,14 +18,7 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('date')
 
-            ->add('hourchoice', EntityType::class,[
-                'class' => ChoiceDate::class,
-                'choice_label' => 'hours',
-                'multiple' => 'true',
-                'mapped' => 'false'
-            ])
             ->add('valider', SubmitType::class)
     ;
     }
