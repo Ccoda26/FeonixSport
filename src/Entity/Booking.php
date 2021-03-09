@@ -25,23 +25,20 @@ class Booking
      */
     private $title;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookings")
      */
     private $client;
 
-
     /**
-     * @ORM\ManyToMany(targetEntity=ChoiceDate::class, inversedBy="bookings",cascade={"persist"})
+     * @ORM\Column(type="datetime")
      */
-    private $hourchoice;
+    private $beginAt;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $endAt;
 
-
-    public function __construct()
-    {
-        $this->hourchoice = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -74,27 +71,35 @@ class Booking
     }
 
     /**
-     * @return Collection|ChoiceDate[]
+     * @return mixed
      */
-    public function getHourchoice(): Collection
+    public function getBeginAt()
     {
-        return $this->hourchoice;
+        return $this->beginAt;
     }
 
-    public function addHourchoice(ChoiceDate $hourchoice): self
+    /**
+     * @param mixed $beginAt
+     */
+    public function setBeginAt($beginAt): void
     {
-        if (!$this->hourchoice->contains($hourchoice)) {
-            $this->hourchoice[] = $hourchoice;
-        }
-
-        return $this;
+        $this->beginAt = $beginAt;
     }
 
-    public function removeHourchoice(ChoiceDate $hourchoice): self
+    /**
+     * @return mixed
+     */
+    public function getEndAt()
     {
-        $this->hourchoice->removeElement($hourchoice);
+        return $this->endAt;
+    }
 
-        return $this;
+    /**
+     * @param mixed $endAt
+     */
+    public function setEndAt($endAt): void
+    {
+        $this->endAt = $endAt;
     }
 
 }

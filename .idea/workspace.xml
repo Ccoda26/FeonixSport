@@ -2,12 +2,78 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9fe0419-f4e6-4489-861b-6cda4a140062" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/composer.phar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/uploads/7117978bd36a73fe6c4a08eed066c7de.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/uploads/hiit-6047353908382.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/uploads/sport-6047363634af7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FeonixProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FeonixProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202111815.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202112139.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202112941.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202113035.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202123759.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202124355.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202142027.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202142143.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202142538.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202142938.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202143347.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202143715.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202153208.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202160453.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201203140438.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201205160456.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201205160933.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201205161155.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201208083609.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201208083912.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201209094433.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201210141332.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201210141521.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201210142905.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201210143240.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201210143515.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201210152639.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201212203530.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201212204712.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201212211514.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201212221519.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201212221621.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201216110826.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201218105251.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201218110703.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201218124448.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201218125031.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201218125153.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201222184934.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201222190000.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210101093418.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210103095032.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210105204457.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210124120235.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210124120726.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210124121104.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210124121248.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210124160104.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210128173741.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210209105738.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210209105925.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210210152923.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210210154624.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210210155926.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210218181931.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210218182323.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210218183539.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminBookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminBookingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Users/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Users/BookingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Booking.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ChoiceDate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/ChoiceDate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/BookingType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BookingType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ChoiceDateType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChoiceDateType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/ChoiceDate.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ChoiceDateType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Front/InsertBooking.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Front/InsertBooking.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +81,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -129,20 +195,39 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/proxy-manager-lts" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="1ofIvHuARdAnX2VU6u9EWv6OpZg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -153,10 +238,28 @@
       <option name="presentableId" value="Default" />
       <updated>1613671447191</updated>
       <workItem from="1613671448864" duration="1841000" />
+      <workItem from="1615106775918" duration="7992000" />
+      <workItem from="1615225148191" duration="1000" />
+      <workItem from="1615278096457" duration="3847000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

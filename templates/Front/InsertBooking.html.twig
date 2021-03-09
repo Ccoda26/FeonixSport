@@ -18,24 +18,23 @@
         {{ form_errors(form.title) }}
     </div>
 
-        {% for message in app.flashes('succes') %}
+        {% for message in app.flashes('error') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
-
+        <input type="email" name="email">
         <div>
             <label for="start">Start date:</label>
 
-            <input type="date" id="start" name="date"
-                   value="2018-07-22"
-                   min="2018-01-01" max="2022-12-31">
+            <input type="datetime" id="start" name="beginAt">
+            <small>Office hours are 6am to 10pm</small>
+
         </div>
         <div>
             <label for="appt">Choose a time for your meeting:</label>
 
-            <input type="time" id="appt" name="hours"
-                   min="06:00" max="22:00" required>
+            <input type="datetime" id="appt" name="endAt" required>
 
             <small>Office hours are 6am to 10pm</small>
         </div>

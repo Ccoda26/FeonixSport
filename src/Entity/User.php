@@ -74,8 +74,8 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      *
      * @Assert\Length (
-     *     min="8",
-     *     minMessage="Vote mot de pase doit contenir au moins 8 caractère",
+     *     min="4",
+     *     minMessage="Vote mot de pase doit contenir au moins 4 caractère",
      *      max="20",
      *      maxMessage=" votre mot de passe doit faire moins de 20 caractères"
      * )

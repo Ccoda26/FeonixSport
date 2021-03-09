@@ -14,6 +14,7 @@ class AdminBookingController extends AbstractController
      */
     public function index(BookingRepository $repository): Response
     {
+        //redirection vers le calendrier vu par le users avec lien pour obtenir la liste sous form de tableau
         $booking = $repository->findAll();
 
          $rdvs = [];
