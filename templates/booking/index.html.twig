@@ -7,10 +7,22 @@
 
 
 {% block main %}
-{{ dump(data) }}
-{#    <a href="{{ path('booking_new') }}">Create new booking</a>#}
-
-    <div id="calendar-holder" class="center width-90"></div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1 class="text-center">Calendrier des rendez-vous</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="adminlink">
+            <a href="{{ path('admin_all_booking') }}" >Mes rendez-Vous</a>
+        </div>
+    {% else %}
+    <div class="takebooking">
+        <a href="{{ path('Insert_Date') }}">Prendre un rendez vous >></a>
+    </div>
+    {% endif %}
+    <div id="calendar-holder" class="center width-90 calendar"></div>
 
 
 {% block javascript %}

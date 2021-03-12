@@ -15,7 +15,7 @@ class ArticleController extends AbstractController
      * @Route("/article", name="All_Articles")
      */
     public function AllArticles(ArticleRepository $articleRepository){
-        $articleslist = $articleRepository->findAll();
+        $articleslist = $articleRepository->findBy([],['creationDate' => 'DESC']);
 
         return $this->render('Front/allArticles.html.twig',[
             "articleslist" => $articleslist

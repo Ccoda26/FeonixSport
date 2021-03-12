@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+
+{% block main %}
+
+
+    <table class="width-90 center">
+        <thead class="allbooking">
+        <tr>
+            <th>Type de rendez vous</th>
+            <th>Client</th>
+            <th>Prix</th>
+            <th>Heure de début</th>
+            <th>Heure de fin</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for booking in bookings %}
+            <tr>
+                <td class="text-center">{{ booking.title | capitalize}}</td>
+                <td class="text-center">{{ booking.client.name | capitalize}} {{ booking.client.lastName | capitalize}}</td>
+                <td class="text-center">{{ price | raw }} €</td>
+                <td class="text-center"> {{ booking.beginAt | date("m/d/Y H:i:s") }}</td>
+                <td class="text-center"> {{ booking.endAt | date("m/d/Y H:i:s") }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -9,11 +9,13 @@ use App\Controller\Service\DeleteImage;
 use App\Entity\Article;
 use App\Entity\Picture;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminArticleController extends AbstractController
@@ -135,7 +137,8 @@ class AdminArticleController extends AbstractController
 //         si formulaire valid et envoyer
             return $this->redirectToRoute('Article_Show', [
                 'id' => $articles->getId(),
-            ]);        }
+            ]);
+        }
 
 
         return $this->render('admin/updateArticle.html.twig', [
@@ -162,52 +165,26 @@ class AdminArticleController extends AbstractController
     }
 
 
-
     /**
-     * @Route("/admin/article/delete/picture/{id}", name="delete_article_image", methods={"DELETE"})
+     * @param SessionInterface $session
+     * @param $id
+     * @return RedirectResponse
+     * @Route("/picture/delete/{id}", name="delete_picture")
      */
-    public function deleteImage(Picture $picture,Request $request){
-
-        $data = json_decode($request->getContent(), true);
-
-        // On vérifie si le token est valide
-        if($this->isCsrfTokenValid('delete'.$picture->getId(), $data['_token'])){
-            // On récupère le nom de l'image
-            $nom = $picture->getFilename();
-            // On supprime le fichier
-            unlink($this->getParameter('images_directory').'/'.$nom);
-
-            // On supprime l'entrée de la base
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($picture);
-            $em->flush();
-
-            // On répond en json
-            $message =  new JsonResponse(['success' => 1]);
-        }else{
-//            $message=  new JsonResponse(['error' => 'Token Invalide'], 400);
+    public function RemovePicture(ArticleRepository $articleRepository, SessionInterface $session, $id){
+        ///$pictures = $articleRepository->find($id);
+        $pictures = $session->get('Filename');
+        //dd($session->get('Filename', $Filename));
+        //$pics = $pictures->getFilename();
+dd($pictures);
+        foreach ($pictures as $picture)
+        {
+            unlink($picture[$id]);
         }
-        return $message;
-    }
+        $session->set('picture', $pictures);
 
-//    /**
-//     * @param SessionInterface $session
-//     * @param $id
-//     * @return RedirectResponse
-//     * @Route("/picture/delete/{id}", name="delete_picture")
-//     */
-//    public function RemovePicture(SessionInterface $session, $id){
-//        $Filename = $session->get('Filename');
-//        dd($session->get('Filename', $Filename));
-//
-//        foreach (array_keys($pictures) as $picture)
-//        {
-//            unset($picture[$id]);
-//        }
-//        $session->set('picture', $pictures);
-//
-//
-//        return  $this->redirectToRoute('Admin_Article_Show');
-//    }
+
+        return  $this->redirectToRoute('Admin_Article_Show');
+    }
 }
 

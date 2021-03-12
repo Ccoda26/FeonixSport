@@ -18,7 +18,6 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('title')
-
             ->add('valider', SubmitType::class)
     ;
     }

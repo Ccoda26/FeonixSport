@@ -23,11 +23,9 @@
                 {% if exercice.filename %}
                     <div class="width-90 text-center">
 
-                        <img src="{{ asset("assets/uploads/" ~ exercice.Filename ) }}" alt="" class="resp">
+                        <img src="{{ asset("assets/uploads/" ~ exercice.Filename ) }}" alt="{{ exercice.Filename }}" class="resp">
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('delete_exercice_image',{'id': exercice.id})}}"
-                               data-delete data-token="{{ csrf_token('delete' ~ exercice.id )}}"
-                               class="delete"> Supprimer cette image </a>
+                            <a class="adminlink" href="{{ path('delete_picture',{'id': exercice.id}) }}"> Supprimer cette photo </a>
                         {% endif %}
                     </div>
                 {% endif %}

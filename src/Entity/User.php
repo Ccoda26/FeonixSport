@@ -145,9 +145,15 @@ class User implements UserInterface
      */
     private $bookings;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Card::class, mappedBy="client")
+     */
+    private $userCard;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->userCard = new ArrayCollection();
     }
 
 
@@ -339,6 +345,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($booking->getClient() === $this) {
                 $booking->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Card[]
+     */
+    public function getUserCard(): Collection
+    {
+        return $this->userCard;
+    }
+
+    public function addUserCard(Card $userCard): self
+    {
+        if (!$this->userCard->contains($userCard)) {
+            $this->userCard[] = $userCard;
+            $userCard->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCard(Card $userCard): self
+    {
+        if ($this->userCard->removeElement($userCard)) {
+            // set the owning side to null (unless already changed)
+            if ($userCard->getClient() === $this) {
+                $userCard->setClient(null);
             }
         }
 

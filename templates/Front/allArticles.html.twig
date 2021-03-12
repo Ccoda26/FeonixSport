@@ -9,13 +9,12 @@
         <div class="adminlink">
             <a href="{{ path('Article_Insert') }}" >Création d'article</a>
         </div>
-
     {% endif %}
     <section  class="flexblock width-90 wrap center">
-        {% for article in articleslist|reverse %}
+        {% for article in articleslist %}
             {% if is_granted('ROLE_ADMIN')%}
                 <article class="unarticle text-center">
-                    <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title }}</a></h2>
+                    <h2 class="articleTitle"><a href="{{ path('Article_Show', {'id': article.id}) }}">{{ article.title | capitalize }}</a></h2>
                     <p>{{ article.description }}</p>
                     {% if article.published %}
                         <p>article publié</p>

@@ -41,7 +41,7 @@
                     </li>
                 {% else %}
                     <li class="login">
-                        <a href="{{ path('app_login') }}" class="lienHeader"> connecte-toi</a>
+                        <a href="{{ path('app_login') }}" class="lienHeader">connecte-toi</a>
                     </li>
                 {% endif %}
                 <li>
@@ -52,9 +52,9 @@
                 <li><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
                 <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('admin_booking_calendar') }}" class="lienHeader"> Rendez-vous</a></li>
+                    <li><a href="{{ path('admin_booking') }}" class="lienHeader">Mes Rendez-vous</a></li>
                 {% else %}
-                    <li><a href="{{ path('Insert_Date') }}" class="lienHeader">Prise de Rendez-Vous</a></li>
+                    <li><a href="{{ path('booking') }}" class="lienHeader">Prise de Rendez-Vous</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -65,10 +65,10 @@
                 <li class="flex milieu"><a href="{{ path('All_Programs') }}" class="lienHeader">Programmes</a></li>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('admin_booking_calendar') }}" class="lienHeader">Ajouter un Rendez-vous</a></li>
+                    <li><a href="{{ path('admin_booking') }}" class="lienHeader">Mes Rendez-vous</a></li>
                 {% else %}
                     <li><a href="{{ path('page_identity') }}" class="lienHeader">Qui sommes nous ?</a></li>
-                    <li class="flex milieu"><a href="{{ path('Insert_Date') }}" class="lienHeader">Rendez-Vous</a></li>
+                    <li class="flex milieu"><a href="{{ path('booking') }}" class="lienHeader">Rendez-Vous</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -91,14 +91,14 @@
         {% if is_granted('ROLE_ADMIN') %}
             <div class="panier flexnone">
                 <a href="#">
-                    <img src="{{ asset('assets/img/panier.svg') }}" alt="" class="resp">
+                    <img src="{{ asset('assets/img/bags.png') }}" alt="" class="resp">
                     <p>Les commandes</p>
                 </a>
             </div>
             {% else %}
             <div class="panier flexnone">
                 <a href="{{ path('panier_vide') }}">
-                    <img src="{{ asset('assets/img/panier.svg') }}" alt="" class="resp">
+                    <img src="{{ asset('assets/img/bags.png') }}" alt="" class="resp">
                     <p>Panier</p>
                 </a>
             </div>
@@ -149,7 +149,7 @@
 
         <h1 class="titre text-center">Le meilleur programme pour débuter le sport</h1>
         <article class="flexblock width-90 center">
-            {% if program.Filename %}
+           {% if program.Filename %}
                 <div class="exercice">
                     <a href="{{ path('Program_Show', {'id': program.id}) }}">
                         <img src="{{ asset('assets/uploads/' ~ program.Filename.Filename) }}" class="resp">
@@ -182,13 +182,13 @@
             <h2 class="foottitle white">Venez suivre nos actualitées :</h2>
             <div class="flex mediafooter">
                 <div class="SocialPicture">
-                    <img src="{{ asset('assets/img/Fbicon.svg') }}" alt="" class="resp">
+                    <img src="{{ asset('assets/img/facebook.png') }}" alt="" class="resp">
                 </div>
                 <div class="SocialPicture">
-                    <img src="{{ asset('assets/img/Instaicon.svg') }}" alt="" class="resp">
+                    <img src="{{ asset('assets/img/instagram.png') }}" alt="" class="resp">
                 </div>
                 <div class="SocialPicture ">
-                    <img src="{{ asset('assets/img/twiticon.svg') }}" alt="" class="resp">
+                    <img src="{{ asset('assets/img/twitter.png') }}" alt="" class="resp">
                 </div>
             </div>
         </nav>

@@ -8,17 +8,17 @@ use App\Entity\Exercise;
 use App\Entity\Picture;
 use App\Form\ExerciceType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminExerciceController extends AbstractController
 {
     /**
-     * @Route("/admin/exercice", name="Admin_All_Exercices")
+     * @Route ("/admin/exercice", name="Admin_All_Exercices")
      * @return Response
      */
     public function AllExercices()
@@ -50,7 +50,6 @@ class AdminExerciceController extends AbstractController
 
         $exercices = new Exercise();
 
-
         $form = $this->createForm(ExerciceType::class, $exercices);
 
         $form->handleRequest($request);
@@ -60,31 +59,26 @@ class AdminExerciceController extends AbstractController
             $pictures = $form->get('Filename')->getData();
 
             // On boucle sur les images
+            if ($pictures) {
             foreach ($pictures as $image) {
-                if ($image) {
-                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                    // this is needed to safely include the file name as part of the URL
-                    $safeFilename = $slugger->slug($originalFilename);
-                    // On génère un nouveau nom de fichier
-                    $newfilename = md5(uniqid()) . '.' . $image->guessExtension();
+                $title = 'Feonix';
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $title.'.'.$safeFilename.'-'.uniqid().'.'.$image->guessExtension();
 
-                    // On copie le fichier dans le dossier uploads
+                // On copie le fichier dans le dossier uploads
                     $image->move(
                         $this->getParameter('images_directory'),
-                        $newfilename
+                        $newFilename
                     );
 
                     // On crée l'image dans la base de données
                     $picture = new Picture();
-                    $picture->setFilename($newfilename);
+                    $picture->setFilename($newFilename);
                     $exercices->addFilename($picture);
                 }
 
-//                $category = new Category();
-//                $category->addExercice()->getId();
-//                $exercices->setCategory($category);
-//
-//                dd($category);
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($exercices);
@@ -112,6 +106,7 @@ class AdminExerciceController extends AbstractController
     public function UpdateExercice(Request $request,
                                    EntityManagerInterface $entityManager,
                                    SluggerInterface $slugger,
+                                   Exercise $exercise,
                                    $id
     )
     {
@@ -129,21 +124,22 @@ class AdminExerciceController extends AbstractController
             // On boucle sur les images
             foreach ($pictures as $image) {
                 if ($image) {
+                    $title = 'Feonix';
                     $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                     // this is needed to safely include the file name as part of the URL
                     $safeFilename = $slugger->slug($originalFilename);
-                    // On génère un nouveau nom de fichier
-                    $newfilename = md5(uniqid()) . '.' . $safeFilename->guessExtension();
+                    $newFilename = $title.'.'.$safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
 
                     // On copie le fichier dans le dossier uploads
                     $image->move(
                         $this->getParameter('images_directory'),
-                        $newfilename
+                        $newFilename
                     );
 
                     // On crée l'image dans la base de données
                     $picture = new Picture();
-                    $picture->setFilename($newfilename);
+                    $picture->setFilename($newFilename);
                     $exercices->addFilename($picture);
                 }
 
