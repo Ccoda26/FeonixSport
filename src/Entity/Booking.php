@@ -39,6 +39,16 @@ class Booking
      */
     private $endAt;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Paid;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $Price;
+
 
     public function getId(): ?int
     {
@@ -100,6 +110,30 @@ class Booking
     public function setEndAt($endAt): void
     {
         $this->endAt = $endAt;
+    }
+
+    public function getPaid(): ?bool
+    {
+        return $this->Paid;
+    }
+
+    public function setPaid(?bool $Paid): self
+    {
+        $this->Paid = $Paid;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->Price;
+    }
+
+    public function setPrice(float $Price): self
+    {
+        $this->Price = $Price;
+
+        return $this;
     }
 
 }

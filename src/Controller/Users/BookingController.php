@@ -13,6 +13,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -59,9 +60,8 @@ class BookingController extends AbstractController
    Public function InsertDate(Request $request,
                               EntityManagerInterface $entityManager,
                               UserRepository $userRepository,
-                              BookingRepository $bookingRepository)
+                              BookingRepository $bookingRepository, SessionInterface $session)
    {
-
        $booking = new Booking();
 
        $form = $this->createForm(BookingType::class, $booking);
@@ -70,9 +70,9 @@ class BookingController extends AbstractController
 
        if ($form->isSubmitted() && $form->isValid()) {
             $beginAt = new \DateTime($request->request->get('beginAt'));
-           $endAt = new \DateTime($request->request->get('endAt'));
-   // dump($beginAt);
-    //dump($endAt);
+            $endAt = new \DateTime($request->request->get('endAt'));
+//dd($beginAt);
+
            $datamail = $request->request->get('email');
 
             $searchUser = $userRepository->findOneBy(['email' => $datamail]);
@@ -86,7 +86,7 @@ class BookingController extends AbstractController
             if ($searchbeginat === null && $searchendat === null){
 
                 $bookingEntity = $bookingRepository->findAll();
-            
+
                 foreach($bookingEntity as $book){
                     $beginHours[] = $book->getBeginAt();
                     $endHours []= $book->getEndAt();
@@ -104,63 +104,47 @@ class BookingController extends AbstractController
                         return $this->redirectToRoute('Insert_Date');
 
                     }
-                }
 
+                }
               $booking->setBeginAt($beginAt);
               $booking->setEndAt($endAt);
-     
-//dd($booking);
-                $entityManager->persist($booking);
-                $entityManager->flush();
+
+                $diff = abs(strtotime($endAt->format('Y-m-d H:i:s')) - strtotime($beginAt->format('Y-m-d H:i:s')));
+
+                $years = floor($diff / (365 * 60 * 60 * 24));
+                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+                $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
+
+                $minuts = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+
+                $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minuts * 60));
+
+                $duration[] = (" %d days $days, %d hours $hours, %d minuts\n,$minuts, %d seconds\n  $seconds ");
 
 
-               // $calcul =0;
-
-                    $date1= $beginAt->format('Y-m-d H:i:s');
-                    $date2 = $endAt->format('Y-m-d H:i:s');
-
-                    $diff = abs(strtotime($date2) - strtotime($date1));
-
-                    $years   = floor($diff / (365*60*60*24));
-                    $months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                    $days    = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
-                    $hours   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24)/ (60*60));
-
-                    $minuts  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
-
-                    $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minuts*60));
-
-                    $duration[] = (" %d days $days, %d hours $hours, %d minuts\n,$minuts, %d seconds\n  $seconds ");
-
-
-                    if ($hours >=1){
+                if ($hours >= 0) {
+                    $calcul = 50;
+                    if ($hours >= 1) {
                         $calcul = $hours * 50;
-                        $price = $calcul;
                     }
+                    $price = $calcul;
+                }
+
+                $booking->setPrice($price);
 
 
-                $card= new Card();
+                if (!empty($booking)){
+                    $entityManager->persist($booking);
+                    $entityManager->flush();
 
-                $product = $booking->getTitle();
-                $card->setProduct($product);
-                $client = $booking->getClient();
-                $card->setClient($client);
-                $card->setPrice($price);
-                $bookId = $booking->getId();
-                $clientId = $booking->getClient()->getId();
-
-                $numCommand = "$bookId"."$clientId-" .md5(uniqid());
-                $card->setNumCommand($numCommand);
-
-               $entityManager->persist($card);
-               $entityManager->flush();
-
-//dd($card);
-               $this->addFlash('success', 'Votre rendez-vous à bien été prise en compte');
-               return $this->redirectToRoute('panier_vide',[
-                   "card" => $card
-               ]);
+                    $this->addFlash('success', 'Votre rendez-vous à bien été prise en compte');
+                    return $this->redirectToRoute('panier_vide');
+                }else{
+                   $this->addFlash('error', "erreur cest produit lors de l'envoi");
+                  return  $this->redirectToRoute('Insert_Date');
+                }
 
             }else {
                 $this->addFlash('error', 'créneaux est deja pris1');

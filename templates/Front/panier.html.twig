@@ -2,11 +2,16 @@
 
 
 {% block main %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {% if items | length >0 %}
         <table class="width-90 center">
-            <thead>
-            <tr>
+            <thead class="panierdata">
+            <tr >
                 <th>Nom du Produit</th>
                 <th>programme</th>
                 <th>Prix</th>
@@ -29,17 +34,52 @@
                     </td>
                 </tr>
             {% endfor %}
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="2" class="text-center">Total :</td>
-                <td>{{ total }}</td>
-                <td> </td>
-            </tr>
-            </tfoot>
-        </table>
 
-    {% else  %}
+            </tbody>
+        </table>
+    {% endif %}
+    {% if listRdvs %}
+        <table class="width-90 center">
+            <thead>
+            <tr>
+                <th>type de rendez-vous :</th>
+                <th>client</th>
+                <th>Prix</th>
+                <th>Date et heure</th>
+            </tr>
+            </thead>
+           <tbody>
+           {% for listRdv in listRdvs %}
+           {% if listRdv.paid is null %}
+           <tr>
+               <td class="text-center">{{ listRdv.title }}</td>
+               <td class="text-center">{{ listRdv.client.name }} {{ listRdv.client.lastname }}</td>
+                <td class="text-center" > {{ listRdv.price }}</td>
+               <td class="text-center" >  {{ listRdv.beginAt | date}} - {{ listRdv.endAt | date}}</td>
+           </tr>
+           </tbody>
+    {% endif %}
+    {% endfor %}
+        <tfoot>
+        <tr>
+            <td colspan="2" class="text-center">Total :</td>
+
+
+                    <td>{{ total}}</td>
+
+
+            {{ form_start(form) }}
+            <td>
+                <div class="adminlink">
+
+                    {{ form_row(form.submit) }}
+                </div>
+            </td>
+            {{ form_end(form) }}
+        </tr>
+        </tfoot>
+        </table>
+    {% else %}
         <h1>Ton panier est vide</h1>
     {% endif %}
 

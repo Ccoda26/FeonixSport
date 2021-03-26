@@ -7,11 +7,7 @@
 
 
 {% block main %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+
     <h1 class="text-center">Calendrier des rendez-vous</h1>
     {% if is_granted('ROLE_ADMIN') %}
         <div class="adminlink">

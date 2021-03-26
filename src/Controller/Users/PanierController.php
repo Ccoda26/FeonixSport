@@ -4,11 +4,15 @@
 namespace App\Controller\Users;
 
 
-
+use App\Entity\Booking;
 use App\Entity\Card;
-use App\Repository\CardRepository;
+use App\Form\CardType;
+use App\Repository\BookingRepository;
 use App\Repository\ProgramRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,39 +24,81 @@ class PanierController extends AbstractController
      * @Route("/panier", name="panier_vide")
      * @param SessionInterface $session
      * @param ProgramRepository $programRepository
-     * @param CardRepository $cardRepository
-     * @param Card $card
+     * @param BookingRepository $bookingRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
     public function CardPage(SessionInterface $session,
                              ProgramRepository $programRepository,
-                             CardRepository $cardRepository){
+                             BookingRepository $bookingRepository,
+                             Request $request, EntityManagerInterface $entityManager)
+    {
 
         $panier = $session->get('panier', []);
 
         $panierWithData = [];
 
-
-        foreach ($panier as $id){
+        foreach ($panier as $id) {
             $panierWithData[] = [
-                'booking' => $cardRepository->find($id),
                 'program' => $programRepository->find($id),
             ];
         }
 
-        $total = 0;
+        $total = [];
 
-        foreach ($panierWithData as $item){
-            $totalItem = $item['program']->getPrice();
+        $user = $this->getUser()->getId();
+        $listRdv = $bookingRepository->findBy(['client' => $user]);
 
-            $total += $totalItem;
+        if (!empty($listRdv)) {
+            foreach ($panierWithData as $item) {
+                $totalItem = $item['program']->getPrice();
+                $total[] = $totalItem;
+
+            }
+
+            foreach ($listRdv as $tems) {
+
+                $price = $tems->getPrice();
+                $total [] = $price;
+            }
+
+            $card = new Card();
+            $form = $this->createForm(CardType::class, $card);
+            $form->handleRequest($request);
+            $formView = $form->createView();
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $idItem = $panierWithData->getId();
+                $program = $programRepository->find($idItem);
+                $payment = $panierWithData->getPaid();
+                dd($payment);
+                foreach ($listRdv as $done) {
+
+                    $done->setPaid(1);
+
+
+                    $entityManager->persist($done);
+                    $entityManager->flush();
+                }
+                foreach ($program as $programPaid) {
+                    $programPaid->setPaid(1);
+                    dd($programPaid);
+                    $entityManager->persist($programPaid);
+                    $entityManager->flush();
+                }
+                return $this->redirectToRoute('end_site');
+            }
+
+
 
         }
 
+
         return $this->render('Front/panier.html.twig',[
             'items' => $panierWithData,
-            'total' => $total
+            'total' => array_sum($total),
+            'listRdvs' => $listRdv,
+            'form' => $formView,
         ]);
     }
 
@@ -60,18 +106,19 @@ class PanierController extends AbstractController
      * @Route("/panier/{id}", name="panier_plein")
      * @param SessionInterface $session
      * @param $id
+     * @param BookingRepository $bookingRepository
      * @return void
      */
 
-    public function AddCard(SessionInterface $session, $id){
+    public function AddCard(SessionInterface $session, $id, BookingRepository $bookingRepository){
 
         $panier = $session->get('panier', []);
-        $card = $session->get('card', []);
+
         $panier[$id] = 1;
 
         $session->set('panier', $panier);
 
-        dd($session->get('card', $card));
+
     return $this->redirectToRoute('panier_vide');
     }
 
@@ -92,4 +139,17 @@ class PanierController extends AbstractController
 
         return  $this->redirectToRoute('panier_vide');
     }
+
+    /**
+     * @Route("/thanks", name="end_site")
+     */
+
+    public function Thanks(){
+
+        return $this->render('Front/thanks.html.twig');
+    }
+
+
+
+
 }
